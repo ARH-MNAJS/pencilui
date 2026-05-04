@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "files": [
+    {
+      "path": "components/ui/skeleton.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport const Skeleton = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  function Skeleton({ className, ...props }, ref) {\n    return (\n      <div\n        ref={ref}\n        data-slot=\"skeleton\"\n        className={cn(\n          \"pencil-border animate-pulse bg-[var(--pencil-rule)]\",\n          className,\n        )}\n        {...props}\n      />\n    )\n  },\n)\n"
+    }
+  ]
+}

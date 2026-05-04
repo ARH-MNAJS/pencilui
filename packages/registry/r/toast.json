@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "toast",
+  "type": "registry:ui",
+  "dependencies": ["sonner"],
+  "files": [
+    {
+      "path": "components/ui/toast.tsx",
+      "type": "registry:ui",
+      "content": "import { Toaster as SonnerToaster, type ToasterProps } from \"sonner\"\n\nexport function Toaster({ className, toastOptions, ...props }: ToasterProps) {\n  return (\n    <SonnerToaster\n      data-slot=\"toaster\"\n      className={className}\n      toastOptions={{\n        ...toastOptions,\n        classNames: {\n          toast:\n            \"pencil-border bg-[var(--pencil-paper)] text-[var(--pencil-ink)] shadow-lg\",\n          description: \"text-[var(--pencil-muted)]\",\n          actionButton:\n            \"pencil-border pencil-fill-solid pencil-focus inline-flex h-8 items-center px-3 text-xs text-[var(--pencil-paper)]\",\n          cancelButton:\n            \"pencil-border pencil-fill-none pencil-focus inline-flex h-8 items-center px-3 text-xs text-[var(--pencil-ink)]\",\n          ...toastOptions?.classNames,\n        },\n      }}\n      {...props}\n    />\n  )\n}\n\nexport { toast } from \"sonner\"\n"
+    }
+  ]
+}

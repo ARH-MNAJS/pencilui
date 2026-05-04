@@ -34,6 +34,78 @@
     {
       "name": "select",
       "type": "registry:ui"
+    },
+    {
+      "name": "card",
+      "type": "registry:ui"
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui"
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui"
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui"
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui"
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui"
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui"
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui"
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui"
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui"
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui"
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui"
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui"
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui"
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui"
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui"
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui"
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui"
     }
   ]
 }

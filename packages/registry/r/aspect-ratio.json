@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "dependencies": ["@radix-ui/react-aspect-ratio"],
+  "files": [
+    {
+      "path": "components/ui/aspect-ratio.tsx",
+      "type": "registry:ui",
+      "content": "import * as AspectRatioPrimitive from \"@radix-ui/react-aspect-ratio\"\n\nexport const AspectRatio = AspectRatioPrimitive.Root\n"
+    }
+  ]
+}

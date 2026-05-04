@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "dependencies": ["@radix-ui/react-avatar", "clsx", "tailwind-merge"],
+  "files": [
+    {
+      "path": "components/ui/avatar.tsx",
+      "type": "registry:ui",
+      "content": "import * as AvatarPrimitive from \"@radix-ui/react-avatar\"\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport const Avatar = React.forwardRef<\n  React.ElementRef<typeof AvatarPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>\n>(function Avatar({ className, ...props }, ref) {\n  return (\n    <AvatarPrimitive.Root\n      ref={ref}\n      data-slot=\"avatar\"\n      className={cn(\n        \"pencil-border pencil-edges-pill relative flex size-10 shrink-0 overflow-hidden\",\n        className,\n      )}\n      {...props}\n    />\n  )\n})\n\nexport const AvatarImage = React.forwardRef<\n  React.ElementRef<typeof AvatarPrimitive.Image>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>\n>(function AvatarImage({ className, ...props }, ref) {\n  return (\n    <AvatarPrimitive.Image\n      ref={ref}\n      data-slot=\"avatar-image\"\n      className={cn(\"aspect-square h-full w-full\", className)}\n      {...props}\n    />\n  )\n})\n\nexport const AvatarFallback = React.forwardRef<\n  React.ElementRef<typeof AvatarPrimitive.Fallback>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>\n>(function AvatarFallback({ className, ...props }, ref) {\n  return (\n    <AvatarPrimitive.Fallback\n      ref={ref}\n      data-slot=\"avatar-fallback\"\n      className={cn(\n        \"flex h-full w-full items-center justify-center bg-[var(--pencil-rule)] text-[var(--pencil-ink)]\",\n        className,\n      )}\n      {...props}\n    />\n  )\n})\n"
+    }
+  ]
+}
