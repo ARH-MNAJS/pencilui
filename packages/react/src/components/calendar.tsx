@@ -1,0 +1,52 @@
+"use client"
+
+import { DayPicker, type DayPickerProps } from "react-day-picker"
+
+import { buttonVariants } from "./button"
+import { cn } from "../lib/cn"
+
+export type CalendarProps = DayPickerProps
+
+export function Calendar({
+  className,
+  classNames,
+  showOutsideDays = true,
+  ...props
+}: CalendarProps) {
+  return (
+    <DayPicker
+      data-slot="calendar"
+      showOutsideDays={showOutsideDays}
+      className={cn("p-3", className)}
+      classNames={{
+        months: "flex flex-col sm:flex-row gap-2",
+        month: "flex flex-col gap-4",
+        caption: "flex justify-center pt-1 relative items-center w-full",
+        caption_label: "text-sm font-medium",
+        nav: "flex items-center gap-1",
+        nav_button: cn(
+          buttonVariants({ variant: "outline", size: "icon" }),
+          "size-7 bg-transparent p-0 opacity-50 hover:opacity-100",
+        ),
+        nav_button_previous: "absolute left-1",
+        nav_button_next: "absolute right-1",
+        table: "w-full border-collapse space-x-1",
+        head_row: "flex",
+        head_cell: "text-[var(--pencil-muted)] rounded-md w-8 font-normal text-[0.8rem]",
+        row: "flex w-full mt-2",
+        cell: "size-8 text-center text-sm p-0 relative",
+        day: cn(
+          buttonVariants({ variant: "ghost", size: "icon" }),
+          "size-8 p-0 font-normal aria-selected:opacity-100",
+        ),
+        day_selected: "pencil-fill-solid text-[var(--pencil-paper)]",
+        day_today: "border border-[var(--pencil-ink)]",
+        day_outside: "text-[var(--pencil-muted)] opacity-50",
+        day_disabled: "text-[var(--pencil-muted)] opacity-50",
+        day_hidden: "invisible",
+        ...classNames,
+      }}
+      {...props}
+    />
+  )
+}
