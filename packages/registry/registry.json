@@ -1,6 +1,39 @@
 {
-  "$schema": "https://pencilui.com/registry/schema.json",
+  "$schema": "https://pencilui.com/schemas/registry.json",
   "name": "pencilui",
   "homepage": "https://pencilui.com",
-  "items": []
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui"
+    },
+    {
+      "name": "input",
+      "type": "registry:ui"
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui"
+    },
+    {
+      "name": "label",
+      "type": "registry:ui"
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui"
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui"
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui"
+    },
+    {
+      "name": "select",
+      "type": "registry:ui"
+    }
+  ]
 }

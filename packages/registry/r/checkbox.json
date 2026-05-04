@@ -1,0 +1,19 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "dependencies": [
+    "@radix-ui/react-checkbox",
+    "@pencilui/react",
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "components/ui/checkbox.tsx",
+      "type": "registry:ui",
+      "content": "import * as CheckboxPrimitive from \"@radix-ui/react-checkbox\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport * as React from \"react\"\n\nimport { CheckSketch } from \"@pencilui/react/sketches\"\nimport { cn } from \"@/lib/utils\"\n\nconst checkboxVariants = cva(\n  \"pencil-border pencil-focus peer relative inline-flex size-5 shrink-0 items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:pencil-fill-solid data-[state=checked]:text-[var(--pencil-paper)]\",\n  {\n    variants: {\n      strokeWidth: {\n        thin: \"pencil-stroke-thin\",\n        default: \"pencil-stroke-default\",\n        thick: \"pencil-stroke-thick\",\n      },\n      edges: {\n        rect: \"pencil-edges-rect\",\n        rounded: \"pencil-edges-rounded\",\n        pill: \"pencil-edges-pill\",\n        organic: \"pencil-edges-organic\",\n      },\n      sloppiness: {\n        low: \"pencil-sloppiness-low\",\n        medium: \"pencil-sloppiness-medium\",\n        high: \"pencil-sloppiness-high\",\n      },\n      strokeStyle: {\n        solid: \"\",\n        dashed: \"pencil-stroke--dashed\",\n        dotted: \"pencil-stroke--dotted\",\n        double: \"pencil-stroke--double\",\n      },\n      seed: {\n        1: \"pencil-seed-1\",\n        2: \"pencil-seed-2\",\n        3: \"pencil-seed-3\",\n        4: \"pencil-seed-4\",\n      },\n    },\n    defaultVariants: {\n      strokeWidth: \"default\",\n      edges: \"rounded\",\n      sloppiness: \"medium\",\n      strokeStyle: \"solid\",\n    },\n  },\n)\n\nexport interface CheckboxProps\n  extends\n    React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,\n    VariantProps<typeof checkboxVariants> {}\n\nexport const Checkbox = React.forwardRef<\n  React.ElementRef<typeof CheckboxPrimitive.Root>,\n  CheckboxProps\n>(function Checkbox(\n  { className, strokeWidth, edges, sloppiness, strokeStyle, seed, ...props },\n  ref,\n) {\n  return (\n    <CheckboxPrimitive.Root\n      ref={ref}\n      data-slot=\"checkbox\"\n      className={cn(\n        checkboxVariants({ strokeWidth, edges, sloppiness, strokeStyle, seed }),\n        className,\n      )}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator className=\"grid place-items-center\">\n        <CheckSketch className=\"size-3.5 pencil-stroke-draw-on\" />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  )\n})\n\nexport { checkboxVariants }\n"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "dependencies": ["@radix-ui/react-label"],
+  "files": [
+    {
+      "path": "components/ui/label.tsx",
+      "type": "registry:ui",
+      "content": "import * as LabelPrimitive from \"@radix-ui/react-label\"\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport const Label = React.forwardRef<\n  React.ElementRef<typeof LabelPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>\n>(function Label({ className, ...props }, ref) {\n  return (\n    <LabelPrimitive.Root\n      ref={ref}\n      data-slot=\"label\"\n      className={cn(\n        \"text-sm font-medium leading-none text-[var(--pencil-ink)] peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n        className,\n      )}\n      {...props}\n    />\n  )\n})\n"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+  "files": [
+    {
+      "path": "components/ui/textarea.tsx",
+      "type": "registry:ui",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst textareaVariants = cva(\n  \"pencil-border pencil-focus relative block min-h-20 w-full px-3 py-2 text-sm placeholder:text-[var(--pencil-muted)] disabled:cursor-not-allowed disabled:opacity-50\",\n  {\n    variants: {\n      strokeWidth: {\n        thin: \"pencil-stroke-thin\",\n        default: \"pencil-stroke-default\",\n        thick: \"pencil-stroke-thick\",\n      },\n      edges: {\n        rect: \"pencil-edges-rect\",\n        rounded: \"pencil-edges-rounded\",\n        pill: \"pencil-edges-pill\",\n        organic: \"pencil-edges-organic\",\n      },\n      sloppiness: {\n        low: \"pencil-sloppiness-low\",\n        medium: \"pencil-sloppiness-medium\",\n        high: \"pencil-sloppiness-high\",\n      },\n      strokeStyle: {\n        solid: \"\",\n        dashed: \"pencil-stroke--dashed\",\n        dotted: \"pencil-stroke--dotted\",\n        double: \"pencil-stroke--double\",\n      },\n      seed: {\n        1: \"pencil-seed-1\",\n        2: \"pencil-seed-2\",\n        3: \"pencil-seed-3\",\n        4: \"pencil-seed-4\",\n      },\n    },\n    defaultVariants: {\n      strokeWidth: \"default\",\n      edges: \"rounded\",\n      sloppiness: \"medium\",\n      strokeStyle: \"solid\",\n    },\n  },\n)\n\nexport interface TextareaProps\n  extends\n    React.TextareaHTMLAttributes<HTMLTextAreaElement>,\n    VariantProps<typeof textareaVariants> {}\n\nexport const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(\n  { className, strokeWidth, edges, sloppiness, strokeStyle, seed, ...props },\n  ref,\n) {\n  return (\n    <textarea\n      ref={ref}\n      data-slot=\"textarea\"\n      className={cn(\n        textareaVariants({ strokeWidth, edges, sloppiness, strokeStyle, seed }),\n        className,\n      )}\n      {...props}\n    />\n  )\n})\n\nexport { textareaVariants }\n"
+    }
+  ]
+}
