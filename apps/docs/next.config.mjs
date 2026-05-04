@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["@pencilui/react", "react-hook-form"],
   async headers() {
     return [
       {
