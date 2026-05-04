@@ -26,6 +26,7 @@
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
     "size": "size-limit",
     "clean": "rm -rf dist .turbo"
   },
@@ -34,13 +35,21 @@
     "react-dom": "^18 || ^19"
   },
   "dependencies": {
-    "@pencilui/styles": "workspace:*"
+    "@pencilui/styles": "workspace:*",
+    "@radix-ui/react-slot": "^1.1.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5"
   },
   "devDependencies": {
     "@pencilui/eslint-config": "workspace:*",
     "@size-limit/preset-small-lib": "^11.1.6",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^25.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "size-limit": "^11.1.6",
