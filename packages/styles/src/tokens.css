@@ -2,10 +2,26 @@
   :root {
     --pencil-paper: #fbf7ee;
     --pencil-ink: #2b2b2b;
+    --pencil-rule: #d8d2c2;
+    --pencil-muted: #8a8579;
+    --pencil-danger: #a83232;
+
+    --pencil-stroke-width: 1.6px;
+    --pencil-stroke-color: var(--pencil-ink);
+    --pencil-corner-radius: 6px;
+
+    --pencil-border-svg: var(--pencil-border-svg-1);
+    --pencil-hachure-svg: var(--pencil-hachure-svg-1);
+
+    --pencil-motion-draw: 220ms;
+    --pencil-motion-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   [data-theme="dark"] {
     --pencil-paper: #14141a;
     --pencil-ink: #e9e6dd;
+    --pencil-rule: #2e2f33;
+    --pencil-muted: #6f6e68;
+    --pencil-danger: #d97a7a;
   }
 }

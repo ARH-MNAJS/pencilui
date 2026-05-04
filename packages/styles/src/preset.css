@@ -1,0 +1,10 @@
+@import "./tokens.css";
+@import "./layer.css";
+
+@theme {
+  --color-paper: var(--pencil-paper);
+  --color-ink: var(--pencil-ink);
+  --color-rule: var(--pencil-rule);
+  --color-muted: var(--pencil-muted);
+  --color-danger: var(--pencil-danger);
+}

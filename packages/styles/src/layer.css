@@ -1,5 +1,177 @@
 @import "./tokens.css";
 
 @layer pencil {
-  /* Implemented in Stage 1 — visual foundation. */
+  .pencil-border {
+    position: relative;
+    border: var(--pencil-stroke-width) solid transparent;
+    border-image-source: var(--pencil-border-svg);
+    border-image-slice: 16 fill;
+    border-image-width: 16px;
+    border-image-repeat: round;
+    background-clip: padding-box;
+    color: var(--pencil-stroke-color);
+  }
+
+  .pencil-border-none {
+    border: 0;
+    border-image: none;
+  }
+
+  .pencil-border:nth-of-type(4n + 1) {
+    --pencil-border-svg: var(--pencil-border-svg-1);
+  }
+  .pencil-border:nth-of-type(4n + 2) {
+    --pencil-border-svg: var(--pencil-border-svg-2);
+  }
+  .pencil-border:nth-of-type(4n + 3) {
+    --pencil-border-svg: var(--pencil-border-svg-3);
+  }
+  .pencil-border:nth-of-type(4n + 4) {
+    --pencil-border-svg: var(--pencil-border-svg-4);
+  }
+
+  .pencil-seed-1 {
+    --pencil-border-svg: var(--pencil-border-svg-1) !important;
+  }
+  .pencil-seed-2 {
+    --pencil-border-svg: var(--pencil-border-svg-2) !important;
+  }
+  .pencil-seed-3 {
+    --pencil-border-svg: var(--pencil-border-svg-3) !important;
+  }
+  .pencil-seed-4 {
+    --pencil-border-svg: var(--pencil-border-svg-4) !important;
+  }
+
+  .pencil-sloppiness-low,
+  .pencil-sloppiness-medium,
+  .pencil-sloppiness-high {
+    --pencil-border-svg-1: url("./assets/borders/rect-medium-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/rect-medium-1.svg");
+    --pencil-border-svg-3: url("./assets/borders/rect-medium-1.svg");
+    --pencil-border-svg-4: url("./assets/borders/rect-medium-1.svg");
+  }
+
+  .pencil-edges-rect,
+  .pencil-edges-rounded,
+  .pencil-edges-pill,
+  .pencil-edges-organic {
+    --pencil-border-svg-1: url("./assets/borders/rect-medium-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/rect-medium-1.svg");
+    --pencil-border-svg-3: url("./assets/borders/rect-medium-1.svg");
+    --pencil-border-svg-4: url("./assets/borders/rect-medium-1.svg");
+  }
+
+  .pencil-stroke-thin {
+    --pencil-stroke-width: 1px;
+  }
+  .pencil-stroke-default {
+    --pencil-stroke-width: 1.6px;
+  }
+  .pencil-stroke-thick {
+    --pencil-stroke-width: 2.4px;
+  }
+
+  .pencil-stroke--dashed {
+    -webkit-mask-image:
+      linear-gradient(90deg, #000 60%, transparent 60%),
+      linear-gradient(180deg, #000 60%, transparent 60%);
+    mask-image:
+      linear-gradient(90deg, #000 60%, transparent 60%),
+      linear-gradient(180deg, #000 60%, transparent 60%);
+    -webkit-mask-size:
+      10px 100%,
+      100% 10px;
+    mask-size:
+      10px 100%,
+      100% 10px;
+    -webkit-mask-repeat: repeat-x, repeat-y;
+    mask-repeat: repeat-x, repeat-y;
+  }
+
+  .pencil-stroke--dotted {
+    -webkit-mask-image:
+      radial-gradient(circle, #000 40%, transparent 40%),
+      radial-gradient(circle, #000 40%, transparent 40%);
+    mask-image:
+      radial-gradient(circle, #000 40%, transparent 40%),
+      radial-gradient(circle, #000 40%, transparent 40%);
+    -webkit-mask-size: 6px 6px;
+    mask-size: 6px 6px;
+    -webkit-mask-repeat: repeat-x, repeat-y;
+    mask-repeat: repeat-x, repeat-y;
+  }
+
+  .pencil-stroke--double {
+    outline: var(--pencil-stroke-width) solid currentColor;
+    outline-offset: 4px;
+  }
+
+  .pencil-fill-solid {
+    background-color: var(--pencil-ink);
+    color: var(--pencil-paper);
+  }
+
+  .pencil-fill-none {
+    background-color: transparent;
+  }
+
+  .pencil-fill-hachure {
+    background-color: transparent;
+    -webkit-mask-image: var(--pencil-hachure-svg, url("./assets/fills/hachure-soft.svg"));
+    mask-image: var(--pencil-hachure-svg, url("./assets/fills/hachure-soft.svg"));
+    -webkit-mask-size: 24px 24px;
+    mask-size: 24px 24px;
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+    background-color: var(--pencil-ink);
+  }
+
+  .pencil-fill-hachure-soft {
+    background-color: transparent;
+    -webkit-mask-image: var(--pencil-hachure-svg, url("./assets/fills/hachure-soft.svg"));
+    mask-image: var(--pencil-hachure-svg, url("./assets/fills/hachure-soft.svg"));
+    -webkit-mask-size: 32px 32px;
+    mask-size: 32px 32px;
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+    background-color: color-mix(in srgb, var(--pencil-ink) 30%, transparent);
+  }
+
+  .pencil-focus {
+    outline: none;
+  }
+
+  .pencil-focus:focus-visible::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 2px solid transparent;
+    border-image-source: var(--pencil-border-svg);
+    border-image-slice: 16 fill;
+    border-image-width: 16px;
+    border-image-repeat: round;
+    pointer-events: none;
+    animation: pencil-draw-on var(--pencil-motion-draw) var(--pencil-motion-ease);
+    color: var(--pencil-stroke-color);
+  }
+
+  @keyframes pencil-draw-on {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  [data-pencil-randomness="off"] .pencil-border {
+    --pencil-border-svg: var(--pencil-border-svg-1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pencil-focus:focus-visible::after {
+      animation: none;
+    }
+  }
 }
