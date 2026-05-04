@@ -106,6 +106,98 @@
     {
       "name": "toast",
       "type": "registry:ui"
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui"
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui"
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui"
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui"
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui"
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui"
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui"
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui"
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui"
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui"
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui"
+    },
+    {
+      "name": "typography",
+      "type": "registry:ui"
+    },
+    {
+      "name": "table",
+      "type": "registry:ui"
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui"
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui"
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui"
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui"
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui"
+    },
+    {
+      "name": "command",
+      "type": "registry:ui"
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui"
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui"
+    },
+    {
+      "name": "form",
+      "type": "registry:ui"
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui"
     }
   ]
 }

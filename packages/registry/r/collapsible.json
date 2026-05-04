@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:ui",
+  "dependencies": ["@radix-ui/react-collapsible"],
+  "files": [
+    {
+      "path": "components/ui/collapsible.tsx",
+      "type": "registry:ui",
+      "content": "import * as CollapsiblePrimitive from \"@radix-ui/react-collapsible\"\n\nexport const Collapsible = CollapsiblePrimitive.Root\nexport const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger\nexport const CollapsibleContent = CollapsiblePrimitive.CollapsibleContent\n"
+    }
+  ]
+}

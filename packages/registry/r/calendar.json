@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "calendar",
+  "type": "registry:ui",
+  "dependencies": ["react-day-picker", "date-fns", "clsx", "tailwind-merge"],
+  "files": [
+    {
+      "path": "components/ui/calendar.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { DayPicker, type DayPickerProps } from \"react-day-picker\"\n\nimport { cn } from \"@/lib/utils\"\n\nimport { buttonVariants } from \"@/components/ui/button\"\n\nexport type CalendarProps = DayPickerProps\n\nexport function Calendar({\n  className,\n  classNames,\n  showOutsideDays = true,\n  ...props\n}: CalendarProps) {\n  return (\n    <DayPicker\n      data-slot=\"calendar\"\n      showOutsideDays={showOutsideDays}\n      className={cn(\"p-3\", className)}\n      classNames={{\n        months: \"flex flex-col sm:flex-row gap-2\",\n        month: \"flex flex-col gap-4\",\n        caption: \"flex justify-center pt-1 relative items-center w-full\",\n        caption_label: \"text-sm font-medium\",\n        nav: \"flex items-center gap-1\",\n        nav_button: cn(\n          buttonVariants({ variant: \"outline\", size: \"icon\" }),\n          \"size-7 bg-transparent p-0 opacity-50 hover:opacity-100\",\n        ),\n        nav_button_previous: \"absolute left-1\",\n        nav_button_next: \"absolute right-1\",\n        table: \"w-full border-collapse space-x-1\",\n        head_row: \"flex\",\n        head_cell: \"text-[var(--pencil-muted)] rounded-md w-8 font-normal text-[0.8rem]\",\n        row: \"flex w-full mt-2\",\n        cell: \"size-8 text-center text-sm p-0 relative\",\n        day: cn(\n          buttonVariants({ variant: \"ghost\", size: \"icon\" }),\n          \"size-8 p-0 font-normal aria-selected:opacity-100\",\n        ),\n        day_selected: \"pencil-fill-solid text-[var(--pencil-paper)]\",\n        day_today: \"border border-[var(--pencil-ink)]\",\n        day_outside: \"text-[var(--pencil-muted)] opacity-50\",\n        day_disabled: \"text-[var(--pencil-muted)] opacity-50\",\n        day_hidden: \"invisible\",\n        ...classNames,\n      }}\n      {...props}\n    />\n  )\n}\n"
+    }
+  ]
+}

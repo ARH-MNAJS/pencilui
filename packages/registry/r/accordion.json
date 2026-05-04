@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "dependencies": ["@radix-ui/react-accordion", "clsx", "tailwind-merge"],
+  "files": [
+    {
+      "path": "components/ui/accordion.tsx",
+      "type": "registry:ui",
+      "content": "import * as AccordionPrimitive from \"@radix-ui/react-accordion\"\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport const Accordion = AccordionPrimitive.Root\n\nexport const AccordionItem = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Item>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>\n>(function AccordionItem({ className, ...props }, ref) {\n  return (\n    <AccordionPrimitive.Item\n      ref={ref}\n      data-slot=\"accordion-item\"\n      className={cn(\"border-b border-[var(--pencil-rule)]\", className)}\n      {...props}\n    />\n  )\n})\n\nexport const AccordionTrigger = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Trigger>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>\n>(function AccordionTrigger({ className, children, ...props }, ref) {\n  return (\n    <AccordionPrimitive.Header className=\"flex\">\n      <AccordionPrimitive.Trigger\n        ref={ref}\n        data-slot=\"accordion-trigger\"\n        className={cn(\n          \"pencil-focus flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180\",\n          className,\n        )}\n        {...props}\n      >\n        {children}\n        <svg\n          aria-hidden=\"true\"\n          width=\"14\"\n          height=\"14\"\n          viewBox=\"0 0 14 14\"\n          fill=\"none\"\n          stroke=\"currentColor\"\n          strokeWidth=\"2\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n          className=\"shrink-0 transition-transform duration-200\"\n        >\n          <path d=\"M3 5 L7 9 L11 5\" />\n        </svg>\n      </AccordionPrimitive.Trigger>\n    </AccordionPrimitive.Header>\n  )\n})\n\nexport const AccordionContent = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>\n>(function AccordionContent({ className, children, ...props }, ref) {\n  return (\n    <AccordionPrimitive.Content\n      ref={ref}\n      data-slot=\"accordion-content\"\n      className=\"overflow-hidden text-sm transition-all data-[state=open]:animate-in data-[state=closed]:animate-out\"\n      {...props}\n    >\n      <div className={cn(\"pb-4 pt-0\", className)}>{children}</div>\n    </AccordionPrimitive.Content>\n  )\n})\n"
+    }
+  ]
+}

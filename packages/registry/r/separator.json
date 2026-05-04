@@ -7,7 +7,7 @@
     {
       "path": "components/ui/separator.tsx",
       "type": "registry:ui",
-      "content": "import * as SeparatorPrimitive from \"@radix-ui/react-separator\"\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport const Separator = React.forwardRef<\n  React.ElementRef<typeof SeparatorPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>\n>(function Separator(\n  { className, orientation = \"horizontal\", decorative = true, ...props },\n  ref,\n) {\n  return (\n    <SeparatorPrimitive.Root\n      ref={ref}\n      data-slot=\"separator\"\n      orientation={orientation}\n      decorative={decorative}\n      className={cn(\n        \"shrink-0 bg-[var(--pencil-rule)]\",\n        orientation === \"horizontal\" ? \"h-px w-full\" : \"h-full w-px\",\n        className,\n      )}\n      {...props}\n    />\n  )\n})\n"
+      "content": "import * as SeparatorPrimitive from \"@radix-ui/react-separator\"\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport const Separator = React.forwardRef<\n  React.ElementRef<typeof SeparatorPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>\n>(function Separator({ className, orientation = \"horizontal\", decorative = true, ...props }, ref) {\n  return (\n    <SeparatorPrimitive.Root\n      ref={ref}\n      data-slot=\"separator\"\n      orientation={orientation}\n      decorative={decorative}\n      className={cn(\n        \"shrink-0 bg-[var(--pencil-rule)]\",\n        orientation === \"horizontal\" ? \"h-px w-full\" : \"h-full w-px\",\n        className,\n      )}\n      {...props}\n    />\n  )\n})\n"
     }
   ]
 }

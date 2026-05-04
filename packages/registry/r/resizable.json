@@ -1,0 +1,13 @@
+{
+  "$schema": "https://pencilui.com/schemas/registry-item.json",
+  "name": "resizable",
+  "type": "registry:ui",
+  "dependencies": ["react-resizable-panels", "clsx", "tailwind-merge"],
+  "files": [
+    {
+      "path": "components/ui/resizable.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport * as ResizablePrimitive from \"react-resizable-panels\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport const ResizablePanelGroup = ({\n  className,\n  ...props\n}: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) => (\n  <ResizablePrimitive.PanelGroup\n    data-slot=\"resizable-panel-group\"\n    className={cn(\n      \"flex h-full w-full data-[panel-group-direction=vertical]:flex-col\",\n      className,\n    )}\n    {...props}\n  />\n)\n\nexport const ResizablePanel = ResizablePrimitive.Panel\n\nexport const ResizableHandle = ({\n  withHandle,\n  className,\n  ...props\n}: React.ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {\n  withHandle?: boolean\n}) => (\n  <ResizablePrimitive.PanelResizeHandle\n    data-slot=\"resizable-handle\"\n    className={cn(\n      \"pencil-focus relative flex w-px items-center justify-center bg-[var(--pencil-rule)] data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full\",\n      className,\n    )}\n    {...props}\n  >\n    {withHandle && (\n      <div className=\"pencil-border z-10 flex h-4 w-3 items-center justify-center bg-[var(--pencil-paper)]\">\n        <span className=\"size-2 rounded-full bg-[var(--pencil-muted)]\" />\n      </div>\n    )}\n  </ResizablePrimitive.PanelResizeHandle>\n)\n"
+    }
+  ]
+}
