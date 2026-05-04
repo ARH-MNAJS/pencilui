@@ -10,6 +10,10 @@
     border-image-repeat: round;
     background-clip: padding-box;
     color: var(--pencil-stroke-color);
+    --pencil-border-svg-1: url("./assets/borders/rounded-medium-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/rounded-medium-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/rounded-medium-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/rounded-medium-4.svg");
   }
 
   .pencil-border-none {
@@ -43,23 +47,59 @@
     --pencil-border-svg: var(--pencil-border-svg-4) !important;
   }
 
-  .pencil-sloppiness-low,
-  .pencil-sloppiness-medium,
-  .pencil-sloppiness-high {
-    --pencil-border-svg-1: url("./assets/borders/rect-medium-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/rect-medium-1.svg");
-    --pencil-border-svg-3: url("./assets/borders/rect-medium-1.svg");
-    --pencil-border-svg-4: url("./assets/borders/rect-medium-1.svg");
+  .pencil-edges-rect.pencil-sloppiness-low {
+    --pencil-border-svg-1: url("./assets/borders/rect-low-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/rect-low-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/rect-low-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/rect-low-4.svg");
   }
-
-  .pencil-edges-rect,
-  .pencil-edges-rounded,
-  .pencil-edges-pill,
-  .pencil-edges-organic {
+  .pencil-edges-rect.pencil-sloppiness-medium {
     --pencil-border-svg-1: url("./assets/borders/rect-medium-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/rect-medium-1.svg");
-    --pencil-border-svg-3: url("./assets/borders/rect-medium-1.svg");
-    --pencil-border-svg-4: url("./assets/borders/rect-medium-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/rect-medium-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/rect-medium-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/rect-medium-4.svg");
+  }
+  .pencil-edges-rect.pencil-sloppiness-high {
+    --pencil-border-svg-1: url("./assets/borders/rect-high-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/rect-high-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/rect-high-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/rect-high-4.svg");
+  }
+  .pencil-edges-rounded.pencil-sloppiness-low {
+    --pencil-border-svg-1: url("./assets/borders/rounded-low-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/rounded-low-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/rounded-low-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/rounded-low-4.svg");
+  }
+  .pencil-edges-rounded.pencil-sloppiness-medium {
+    --pencil-border-svg-1: url("./assets/borders/rounded-medium-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/rounded-medium-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/rounded-medium-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/rounded-medium-4.svg");
+  }
+  .pencil-edges-rounded.pencil-sloppiness-high {
+    --pencil-border-svg-1: url("./assets/borders/rounded-high-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/rounded-high-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/rounded-high-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/rounded-high-4.svg");
+  }
+  .pencil-edges-organic.pencil-sloppiness-low {
+    --pencil-border-svg-1: url("./assets/borders/organic-low-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/organic-low-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/organic-low-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/organic-low-4.svg");
+  }
+  .pencil-edges-organic.pencil-sloppiness-medium {
+    --pencil-border-svg-1: url("./assets/borders/organic-medium-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/organic-medium-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/organic-medium-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/organic-medium-4.svg");
+  }
+  .pencil-edges-organic.pencil-sloppiness-high {
+    --pencil-border-svg-1: url("./assets/borders/organic-high-1.svg");
+    --pencil-border-svg-2: url("./assets/borders/organic-high-2.svg");
+    --pencil-border-svg-3: url("./assets/borders/organic-high-3.svg");
+    --pencil-border-svg-4: url("./assets/borders/organic-high-4.svg");
   }
 
   .pencil-stroke-thin {

@@ -40,3 +40,5 @@ AGENTS.md
 .codeiumignore
 .github/copilot-instructions.md
 **/*.ai.md
+
+tools/
