@@ -1,0 +1,63 @@
+{
+  "name": "@pencilui/react",
+  "version": "0.0.0",
+  "description": "React components for pencilui — hand-drawn / pencil-sketch UI library.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./sketches": {
+      "types": "./dist/sketches.d.ts",
+      "import": "./dist/sketches.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "size": "size-limit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
+  },
+  "dependencies": {
+    "@pencilui/styles": "workspace:*"
+  },
+  "devDependencies": {
+    "@pencilui/eslint-config": "workspace:*",
+    "@size-limit/preset-small-lib": "^11.1.6",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "size-limit": "^11.1.6",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "size-limit": [
+    {
+      "name": "@pencilui/react (full)",
+      "path": "dist/index.js",
+      "limit": "25 KB",
+      "import": "*"
+    }
+  ]
+}

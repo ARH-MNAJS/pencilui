@@ -1,0 +1,66 @@
+name: Bug report
+description: Report a defect in pencilui
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. A minimal reproduction is required.
+
+  - type: input
+    id: repro
+    attributes:
+      label: Reproduction
+      description: A minimal reproduction in a Sandbox or a public repo. Issues without a repro may be closed.
+      placeholder: https://stackblitz.com/edit/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What did you expect, and what actually happened?
+    validations:
+      required: true
+
+  - type: input
+    id: pencilui-version
+    attributes:
+      label: pencilui version
+      placeholder: "@pencilui/react@x.y.z"
+    validations:
+      required: true
+
+  - type: input
+    id: react-version
+    attributes:
+      label: React version
+      placeholder: "18.x or 19.x"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Framework
+      options:
+        - Next.js (App Router)
+        - Next.js (Pages Router)
+        - Vite
+        - Remix
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser & version
+      placeholder: "Chrome 130 / Safari 18 / Firefox 132"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      render: shell

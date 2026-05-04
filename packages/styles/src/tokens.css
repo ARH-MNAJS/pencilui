@@ -1,0 +1,11 @@
+@layer pencil-tokens {
+  :root {
+    --pencil-paper: #fbf7ee;
+    --pencil-ink: #2b2b2b;
+  }
+
+  [data-theme="dark"] {
+    --pencil-paper: #14141a;
+    --pencil-ink: #e9e6dd;
+  }
+}

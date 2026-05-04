@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest a small additive feature (new variant, new prop, new utility class)
+labels: ["feature", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for **small additive** features. For breaking changes or new components, open an RFC instead.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What can't you do today, and what's the impact?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What change would you make? Include API shape if applicable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What else did you think about?

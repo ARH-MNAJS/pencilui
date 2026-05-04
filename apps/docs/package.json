@@ -1,0 +1,14 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "pencilui documentation site (Next.js + Fumadocs + Sandpack). Implemented in Stage 6.",
+  "type": "module",
+  "scripts": {
+    "build": "echo \"docs: implementation pending (Stage 6)\"",
+    "dev": "echo \"docs: implementation pending (Stage 6)\"",
+    "typecheck": "echo \"docs: nothing to typecheck yet\"",
+    "lint": "echo \"docs: nothing to lint yet\"",
+    "clean": "rm -rf .next .turbo out"
+  }
+}

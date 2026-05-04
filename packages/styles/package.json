@@ -1,0 +1,62 @@
+{
+  "name": "@pencilui/styles",
+  "version": "0.0.0",
+  "description": "CSS layer, design tokens, hand-drawn SVG assets, and Tailwind preset for pencilui.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./layer.css": "./src/layer.css",
+    "./tokens.css": "./src/tokens.css",
+    "./preset": {
+      "types": "./dist/preset.d.ts",
+      "import": "./dist/preset.js"
+    },
+    "./assets/*": "./src/assets/*"
+  },
+  "files": [
+    "dist",
+    "src/layer.css",
+    "src/tokens.css",
+    "src/assets"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "devDependencies": {
+    "@pencilui/eslint-config": "workspace:*",
+    "@size-limit/preset-small-lib": "^11.1.6",
+    "size-limit": "^11.1.6",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "size-limit": [
+    {
+      "name": "@pencilui/styles (JS preset)",
+      "path": "dist/index.js",
+      "limit": "2 KB"
+    },
+    {
+      "name": "@pencilui/styles (CSS layer)",
+      "path": "src/layer.css",
+      "limit": "8 KB"
+    }
+  ]
+}

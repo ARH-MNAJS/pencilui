@@ -1,0 +1,11 @@
+node_modules
+dist
+.next
+.turbo
+out
+coverage
+playwright-report
+test-results
+*.tsbuildinfo
+pnpm-lock.yaml
+.changeset/*.md

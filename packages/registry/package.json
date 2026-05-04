@@ -1,0 +1,18 @@
+{
+  "name": "@pencilui/registry",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Static component registry for pencilui — JSON manifests consumed by the CLI.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./registry.json",
+  "files": [
+    "registry.json",
+    "components/**"
+  ],
+  "scripts": {
+    "typecheck": "echo \"@pencilui/registry: static JSON, no typecheck\"",
+    "build": "echo \"@pencilui/registry: static JSON, nothing to build\"",
+    "clean": "rm -rf .turbo"
+  }
+}
