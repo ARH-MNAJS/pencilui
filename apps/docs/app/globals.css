@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import "@pencilui/styles/preset.css";
+
+:root {
+  color-scheme: light;
+  --background: var(--pencil-paper);
+  --foreground: var(--pencil-ink);
+}
+
+[data-theme="graphite"],
+.dark {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--pencil-paper);
+  color: var(--pencil-ink);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}

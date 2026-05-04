@@ -20,6 +20,8 @@ export default [
       "**/test-results/**",
       "**/out/**",
       "**/*.tsbuildinfo",
+      "**/next-env.d.ts",
+      "**/public/**",
     ],
   },
   js.configs.recommended,
