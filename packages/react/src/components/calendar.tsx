@@ -13,7 +13,6 @@ function DayButton({ day, modifiers, className, ...props }: DayButtonProps) {
     <Button
       type="button"
       variant={variant}
-      size="icon"
       pencilSeed={`day-${day.date.toISOString()}`}
       className={cn(
         "size-8 p-0 font-normal",

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { type ButtonProps, buttonVariants } from "./button"
+import { buttonVariants } from "./button"
 import { cn } from "../lib/cn"
 import { usePencilRadius } from "../lib/use-pencil-radius"
 
@@ -38,13 +38,11 @@ export const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentPro
 type PaginationLinkProps = {
   isActive?: boolean
   pencilSeed?: string
-} & Pick<ButtonProps, "size"> &
-  React.ComponentProps<"a">
+} & React.ComponentProps<"a">
 
 export const PaginationLink = ({
   className,
   isActive,
-  size = "icon",
   pencilSeed,
   style,
   ...props
@@ -57,13 +55,7 @@ export const PaginationLink = ({
     <a
       aria-current={isActive ? "page" : undefined}
       data-slot="pagination-link"
-      className={cn(
-        buttonVariants({
-          variant: isActive ? "default" : "ghost",
-          size,
-        }),
-        className,
-      )}
+      className={cn(buttonVariants({ variant: isActive ? "default" : "ghost" }), className)}
       style={{ ...radius, ...style }}
       {...props}
     />
@@ -76,7 +68,6 @@ export const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
-    size="default"
     className={cn("gap-1 pl-2.5", className)}
     {...props}
   >
@@ -88,12 +79,7 @@ export const PaginationNext = ({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
-  <PaginationLink
-    aria-label="Go to next page"
-    size="default"
-    className={cn("gap-1 pr-2.5", className)}
-    {...props}
-  >
+  <PaginationLink aria-label="Go to next page" className={cn("gap-1 pr-2.5", className)} {...props}>
     <span>Next</span>
   </PaginationLink>
 )
