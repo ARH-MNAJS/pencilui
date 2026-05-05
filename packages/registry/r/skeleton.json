@@ -7,7 +7,7 @@
     {
       "path": "components/ui/skeleton.tsx",
       "type": "registry:ui",
-      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport const Skeleton = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  function Skeleton({ className, ...props }, ref) {\n    return (\n      <div\n        ref={ref}\n        data-slot=\"skeleton\"\n        className={cn(\"pencil-border animate-pulse bg-[var(--pencil-rule)]\", className)}\n        {...props}\n      />\n    )\n  },\n)\n"
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { usePencilRadius } from \"../lib/use-pencil-radius\"\n\nexport interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {\n  pencilSeed?: string\n}\n\nexport const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(\n  function Skeleton({ className, pencilSeed, style, ...props }, ref) {\n    const radius = usePencilRadius(\n      \"skeleton\",\n      pencilSeed !== undefined ? { seed: pencilSeed } : undefined,\n    )\n    return (\n      <div\n        ref={ref}\n        data-slot=\"skeleton\"\n        className={cn(\"animate-pulse bg-[var(--pencil-paper-tint)]\", className)}\n        style={{ ...radius, borderRadius: \"var(--pencil-radius)\", ...style }}\n        {...props}\n      />\n    )\n  },\n)\n"
     }
   ]
 }
