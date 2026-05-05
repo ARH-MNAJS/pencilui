@@ -8,7 +8,7 @@ import { cn } from "../lib/cn"
 export type CalendarProps = DayPickerProps
 
 function DayButton({ day, modifiers, className, ...props }: DayButtonProps) {
-  const variant = modifiers.selected ? "default" : "ghost"
+  const variant = modifiers.selected ? "filled" : "ghost"
   return (
     <Button
       type="button"

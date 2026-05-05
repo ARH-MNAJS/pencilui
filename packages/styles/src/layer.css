@@ -65,6 +65,38 @@
     background-color: transparent;
   }
 
+  .pencil-fill-danger-soft {
+    background-color: color-mix(in srgb, var(--pencil-danger) 22%, var(--pencil-paper));
+  }
+  .pencil-fill-danger-soft-hover:hover {
+    background-color: color-mix(in srgb, var(--pencil-danger) 32%, var(--pencil-paper));
+  }
+
+  .pencil-fill-ink-soft {
+    background-color: color-mix(in srgb, var(--pencil-ink) 10%, var(--pencil-paper));
+  }
+  .pencil-fill-ink-soft-hover:hover {
+    background-color: color-mix(in srgb, var(--pencil-ink) 18%, var(--pencil-paper));
+  }
+
+  .pencil-fill-paper-hover:hover {
+    background-color: color-mix(in srgb, var(--pencil-ink) 6%, var(--pencil-paper));
+  }
+
+  .pencil-stroke-danger {
+    --pencil-stroke-color: var(--pencil-danger);
+  }
+  .pencil-text-danger {
+    color: var(--pencil-danger);
+  }
+
+  .pencil-link-wavy {
+    text-decoration: underline wavy;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: currentColor;
+    text-underline-offset: 6px;
+  }
+
   .pencil-prose-body {
     font-family: var(--pencil-font-body);
     font-weight: 700;

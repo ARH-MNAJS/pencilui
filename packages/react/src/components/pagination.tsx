@@ -59,7 +59,7 @@ export const PaginationLink = ({
       data-slot="pagination-link"
       className={cn(
         buttonVariants({
-          variant: isActive ? "outline" : "ghost",
+          variant: isActive ? "default" : "ghost",
           size,
         }),
         className,

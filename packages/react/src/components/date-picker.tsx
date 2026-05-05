@@ -24,7 +24,6 @@ export function DatePicker({
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
           data-slot="date-picker-trigger"
           className={cn(
             "w-[240px] justify-start text-left font-normal",

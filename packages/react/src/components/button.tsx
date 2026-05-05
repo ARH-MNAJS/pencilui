@@ -8,18 +8,18 @@ import { cn } from "../lib/cn"
 import { usePencilRadius, type PencilRadiusKind } from "../lib/use-pencil-radius"
 
 const buttonVariants = cva(
-  "pencil-border pencil-focus pencil-prose-body relative inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm transition-[transform,box-shadow] active:translate-y-px disabled:pointer-events-none disabled:opacity-50",
+  "pencil-border pencil-focus pencil-prose-body relative inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm transition-[transform,box-shadow,background-color,border-color,color,text-decoration-thickness] active:translate-y-px disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "pencil-fill-solid",
+        default: "pencil-fill-paper pencil-fill-paper-hover text-[var(--pencil-ink)]",
+        filled: "pencil-fill-solid text-[var(--pencil-paper)]",
         destructive:
-          "pencil-fill-solid bg-[var(--pencil-danger)] text-[var(--pencil-paper)] [--pencil-stroke-color:var(--pencil-danger)]",
-        outline: "pencil-fill-paper hover:pencil-fill-muted",
-        secondary:
-          "pencil-fill-solid bg-[var(--pencil-ink-soft)] text-[var(--pencil-paper)] [--pencil-stroke-color:var(--pencil-ink-soft)]",
-        ghost: "pencil-border-none hover:pencil-fill-muted",
-        link: "pencil-border-none text-[var(--pencil-ink)] underline underline-offset-4",
+          "pencil-fill-danger-soft pencil-fill-danger-soft-hover pencil-text-danger pencil-stroke-danger",
+        secondary: "pencil-fill-ink-soft pencil-fill-ink-soft-hover text-[var(--pencil-ink)]",
+        ghost:
+          "pencil-border-none bg-transparent text-[var(--pencil-ink)] pencil-fill-ink-soft-hover",
+        link: "pencil-border-none pencil-link-wavy bg-transparent text-[var(--pencil-ink)]",
       },
       size: {
         sm: "h-8 px-3 text-xs",
@@ -66,6 +66,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
     <Comp
       ref={ref}
       data-slot="button"
+      data-variant={variant ?? "default"}
       className={cn(buttonVariants({ variant, size, strokeWidth }), className)}
       style={{ ...radius, ...style }}
       {...props}

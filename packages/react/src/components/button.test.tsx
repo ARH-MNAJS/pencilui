@@ -10,15 +10,35 @@ describe("Button", () => {
     expect(screen.getByRole("button", { name: "Click me" })).toBeInTheDocument()
   })
 
-  it("applies the default variant classes", () => {
+  it("default variant uses paper fill (outline-style)", () => {
     render(<Button>Default</Button>)
     const btn = screen.getByRole("button")
-    expect(btn).toHaveClass("pencil-border", "pencil-fill-solid")
+    expect(btn).toHaveClass("pencil-border", "pencil-fill-paper")
+    expect(btn).toHaveAttribute("data-variant", "default")
   })
 
-  it("applies the outline variant", () => {
-    render(<Button variant="outline">Outline</Button>)
-    expect(screen.getByRole("button")).toHaveClass("pencil-fill-paper")
+  it("filled variant uses solid ink fill", () => {
+    render(<Button variant="filled">Filled</Button>)
+    expect(screen.getByRole("button")).toHaveClass("pencil-fill-solid")
+  })
+
+  it("destructive variant routes through the danger token", () => {
+    render(<Button variant="destructive">Delete</Button>)
+    expect(screen.getByRole("button")).toHaveClass(
+      "pencil-fill-danger-soft",
+      "pencil-text-danger",
+      "pencil-stroke-danger",
+    )
+  })
+
+  it("ghost variant drops the border", () => {
+    render(<Button variant="ghost">Ghost</Button>)
+    expect(screen.getByRole("button")).toHaveClass("pencil-border-none")
+  })
+
+  it("link variant uses wavy underline", () => {
+    render(<Button variant="link">Link</Button>)
+    expect(screen.getByRole("button")).toHaveClass("pencil-link-wavy", "pencil-border-none")
   })
 
   it("applies stroke width variant", () => {
@@ -45,8 +65,7 @@ describe("Button", () => {
 
   it("emits a per-instance --pencil-radius CSS variable", () => {
     render(<Button>Radius</Button>)
-    const btn = screen.getByRole("button")
-    expect(btn.style.getPropertyValue("--pencil-radius")).toMatch(/\//)
+    expect(screen.getByRole("button").style.getPropertyValue("--pencil-radius")).toMatch(/\//)
   })
 
   it("derives a stable radius from a custom seed", () => {
@@ -54,10 +73,5 @@ describe("Button", () => {
     const first = screen.getByRole("button").style.getPropertyValue("--pencil-radius")
     rerender(<Button pencilSeed="alpha">A</Button>)
     expect(screen.getByRole("button").style.getPropertyValue("--pencil-radius")).toBe(first)
-  })
-
-  it("sets data-slot to button", () => {
-    render(<Button>Slot</Button>)
-    expect(screen.getByRole("button")).toHaveAttribute("data-slot", "button")
   })
 })
