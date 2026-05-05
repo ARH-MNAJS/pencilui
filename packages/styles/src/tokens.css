@@ -17,9 +17,11 @@
     --pencil-focus-ring: 0 0 0 0.25rem rgba(51, 51, 51, 0.25);
 
     --pencil-font-body:
-      Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-      Arial, sans-serif;
-    --pencil-font-display: "Cabin Sketch", "Neucha", cursive;
+      "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Marker Felt", "Segoe Print", "Bradley Hand",
+      cursive;
+    --pencil-font-display:
+      "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Marker Felt", "Segoe Print", "Bradley Hand",
+      cursive;
     --pencil-font-mono:
       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
