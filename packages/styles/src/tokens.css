@@ -1,27 +1,45 @@
 @layer pencil-tokens {
   :root {
-    --pencil-paper: #fbf7ee;
-    --pencil-ink: #2b2b2b;
-    --pencil-rule: #d8d2c2;
-    --pencil-muted: #8a8579;
-    --pencil-danger: #a83232;
+    --pencil-paper: #ffffff;
+    --pencil-paper-tint: #fcfcfd;
+    --pencil-ink: #333333;
+    --pencil-ink-soft: #555555;
+    --pencil-rule: #dee2e6;
+    --pencil-muted: #868e96;
+    --pencil-disabled: #aaaaaa;
+    --pencil-danger: #dc3545;
+    --pencil-success: #28a745;
+    --pencil-warning: #ffc107;
+    --pencil-info: #17a2b8;
 
-    --pencil-stroke-width: 1.6px;
+    --pencil-stroke-width: 2px;
     --pencil-stroke-color: var(--pencil-ink);
-    --pencil-corner-radius: 6px;
+    --pencil-focus-ring: 0 0 0 0.25rem rgba(51, 51, 51, 0.25);
 
-    --pencil-border-svg: var(--pencil-border-svg-1);
-    --pencil-hachure-svg: var(--pencil-hachure-svg-1);
+    --pencil-font-body:
+      Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, sans-serif;
+    --pencil-font-display: "Cabin Sketch", "Neucha", cursive;
+    --pencil-font-mono:
+      SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
     --pencil-motion-draw: 220ms;
     --pencil-motion-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  [data-theme="dark"] {
-    --pencil-paper: #14141a;
-    --pencil-ink: #e9e6dd;
-    --pencil-rule: #2e2f33;
-    --pencil-muted: #6f6e68;
-    --pencil-danger: #d97a7a;
+  [data-theme="dark"],
+  .dark {
+    --pencil-paper: #212529;
+    --pencil-paper-tint: #2a2c2e;
+    --pencil-ink: #dee2e6;
+    --pencil-ink-soft: #aaaaaa;
+    --pencil-rule: #555555;
+    --pencil-muted: #868e96;
+    --pencil-disabled: #555555;
+    --pencil-danger: #ea868f;
+    --pencil-success: #7eca8f;
+    --pencil-warning: #ffda6a;
+    --pencil-info: #74c7d4;
+    --pencil-focus-ring: 0 0 0 0.25rem rgba(222, 226, 230, 0.25);
   }
 }

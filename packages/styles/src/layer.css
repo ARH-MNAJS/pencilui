@@ -2,149 +2,53 @@
 
 @layer pencil {
   .pencil-border {
-    position: relative;
-    border: var(--pencil-stroke-width) solid transparent;
-    border-image-source: var(--pencil-border-svg);
-    border-image-slice: 16 fill;
-    border-image-width: 16px;
-    border-image-repeat: round;
+    border: var(--pencil-stroke-width) solid var(--pencil-stroke-color);
+    border-radius: var(--pencil-radius, 25px 25px 25px 25px / 25px 25px 25px 25px);
     background-clip: padding-box;
-    color: var(--pencil-stroke-color);
-    --pencil-border-svg-1: url("./assets/borders/rounded-medium-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/rounded-medium-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/rounded-medium-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/rounded-medium-4.svg");
+  }
+
+  .pencil-radius-button {
+    --pencil-radius: 255px 25px 225px 25px / 25px 225px 25px 255px;
+  }
+  .pencil-radius-card {
+    --pencil-radius: 5px 5px 5px 5px / 25px 25px 25px 5px;
+  }
+  .pencil-radius-toast {
+    --pencil-radius: 10px 10px 15px 5px / 5px 15px 5px 15px;
+  }
+  .pencil-radius-popover {
+    --pencil-radius: 45px 85px 15px 25px / 15px 10px 35px 555px;
+  }
+  .pencil-radius-modal {
+    --pencil-radius: 15px 5px 5px 25px / 5px 25px 25px 5px;
+  }
+  .pencil-radius-pagination {
+    --pencil-radius: 425px 255px 25px 25px / 25px 25px 5px 25px;
+  }
+  .pencil-radius-badge {
+    --pencil-radius: 255px 25px 225px 25px / 25px 225px 25px 255px;
+  }
+  .pencil-radius-input {
+    --pencil-radius: 255px 25px 225px 25px / 25px 225px 25px 255px;
   }
 
   .pencil-border-none {
     border: 0;
-    border-image: none;
-  }
-
-  .pencil-border:nth-of-type(4n + 1) {
-    --pencil-border-svg: var(--pencil-border-svg-1);
-  }
-  .pencil-border:nth-of-type(4n + 2) {
-    --pencil-border-svg: var(--pencil-border-svg-2);
-  }
-  .pencil-border:nth-of-type(4n + 3) {
-    --pencil-border-svg: var(--pencil-border-svg-3);
-  }
-  .pencil-border:nth-of-type(4n + 4) {
-    --pencil-border-svg: var(--pencil-border-svg-4);
-  }
-
-  .pencil-seed-1 {
-    --pencil-border-svg: var(--pencil-border-svg-1) !important;
-  }
-  .pencil-seed-2 {
-    --pencil-border-svg: var(--pencil-border-svg-2) !important;
-  }
-  .pencil-seed-3 {
-    --pencil-border-svg: var(--pencil-border-svg-3) !important;
-  }
-  .pencil-seed-4 {
-    --pencil-border-svg: var(--pencil-border-svg-4) !important;
-  }
-
-  .pencil-edges-rect.pencil-sloppiness-low {
-    --pencil-border-svg-1: url("./assets/borders/rect-low-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/rect-low-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/rect-low-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/rect-low-4.svg");
-  }
-  .pencil-edges-rect.pencil-sloppiness-medium {
-    --pencil-border-svg-1: url("./assets/borders/rect-medium-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/rect-medium-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/rect-medium-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/rect-medium-4.svg");
-  }
-  .pencil-edges-rect.pencil-sloppiness-high {
-    --pencil-border-svg-1: url("./assets/borders/rect-high-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/rect-high-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/rect-high-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/rect-high-4.svg");
-  }
-  .pencil-edges-rounded.pencil-sloppiness-low {
-    --pencil-border-svg-1: url("./assets/borders/rounded-low-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/rounded-low-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/rounded-low-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/rounded-low-4.svg");
-  }
-  .pencil-edges-rounded.pencil-sloppiness-medium {
-    --pencil-border-svg-1: url("./assets/borders/rounded-medium-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/rounded-medium-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/rounded-medium-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/rounded-medium-4.svg");
-  }
-  .pencil-edges-rounded.pencil-sloppiness-high {
-    --pencil-border-svg-1: url("./assets/borders/rounded-high-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/rounded-high-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/rounded-high-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/rounded-high-4.svg");
-  }
-  .pencil-edges-organic.pencil-sloppiness-low {
-    --pencil-border-svg-1: url("./assets/borders/organic-low-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/organic-low-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/organic-low-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/organic-low-4.svg");
-  }
-  .pencil-edges-organic.pencil-sloppiness-medium {
-    --pencil-border-svg-1: url("./assets/borders/organic-medium-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/organic-medium-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/organic-medium-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/organic-medium-4.svg");
-  }
-  .pencil-edges-organic.pencil-sloppiness-high {
-    --pencil-border-svg-1: url("./assets/borders/organic-high-1.svg");
-    --pencil-border-svg-2: url("./assets/borders/organic-high-2.svg");
-    --pencil-border-svg-3: url("./assets/borders/organic-high-3.svg");
-    --pencil-border-svg-4: url("./assets/borders/organic-high-4.svg");
   }
 
   .pencil-stroke-thin {
-    --pencil-stroke-width: 1px;
+    --pencil-stroke-width: 1.5px;
   }
   .pencil-stroke-default {
-    --pencil-stroke-width: 1.6px;
+    --pencil-stroke-width: 2px;
   }
   .pencil-stroke-thick {
-    --pencil-stroke-width: 2.4px;
+    --pencil-stroke-width: 3px;
   }
 
-  .pencil-stroke--dashed {
-    -webkit-mask-image:
-      linear-gradient(90deg, #000 60%, transparent 60%),
-      linear-gradient(180deg, #000 60%, transparent 60%);
-    mask-image:
-      linear-gradient(90deg, #000 60%, transparent 60%),
-      linear-gradient(180deg, #000 60%, transparent 60%);
-    -webkit-mask-size:
-      10px 100%,
-      100% 10px;
-    mask-size:
-      10px 100%,
-      100% 10px;
-    -webkit-mask-repeat: repeat-x, repeat-y;
-    mask-repeat: repeat-x, repeat-y;
-  }
-
-  .pencil-stroke--dotted {
-    -webkit-mask-image:
-      radial-gradient(circle, #000 40%, transparent 40%),
-      radial-gradient(circle, #000 40%, transparent 40%);
-    mask-image:
-      radial-gradient(circle, #000 40%, transparent 40%),
-      radial-gradient(circle, #000 40%, transparent 40%);
-    -webkit-mask-size: 6px 6px;
-    mask-size: 6px 6px;
-    -webkit-mask-repeat: repeat-x, repeat-y;
-    mask-repeat: repeat-x, repeat-y;
-  }
-
-  .pencil-stroke--double {
-    outline: var(--pencil-stroke-width) solid currentColor;
-    outline-offset: 4px;
+  .pencil-fill-paper {
+    background-color: var(--pencil-paper);
+    color: var(--pencil-ink);
   }
 
   .pencil-fill-solid {
@@ -152,57 +56,57 @@
     color: var(--pencil-paper);
   }
 
+  .pencil-fill-muted {
+    background-color: var(--pencil-paper-tint);
+    color: var(--pencil-ink);
+  }
+
   .pencil-fill-none {
     background-color: transparent;
   }
 
-  .pencil-fill-hachure {
-    background-color: transparent;
-    -webkit-mask-image: var(--pencil-hachure-svg, url("./assets/fills/hachure-soft.svg"));
-    mask-image: var(--pencil-hachure-svg, url("./assets/fills/hachure-soft.svg"));
-    -webkit-mask-size: 24px 24px;
-    mask-size: 24px 24px;
-    -webkit-mask-repeat: repeat;
-    mask-repeat: repeat;
-    background-color: var(--pencil-ink);
+  .pencil-prose-body {
+    font-family: var(--pencil-font-body);
+    font-weight: 700;
   }
 
-  .pencil-fill-hachure-soft {
-    background-color: transparent;
-    -webkit-mask-image: var(--pencil-hachure-svg, url("./assets/fills/hachure-soft.svg"));
-    mask-image: var(--pencil-hachure-svg, url("./assets/fills/hachure-soft.svg"));
-    -webkit-mask-size: 32px 32px;
-    mask-size: 32px 32px;
-    -webkit-mask-repeat: repeat;
-    mask-repeat: repeat;
-    background-color: color-mix(in srgb, var(--pencil-ink) 30%, transparent);
+  .pencil-prose-display {
+    font-family: var(--pencil-font-display);
+    font-weight: 700;
+  }
+
+  .pencil-prose-mono {
+    font-family: var(--pencil-font-mono);
   }
 
   .pencil-focus {
     outline: none;
   }
 
-  .pencil-focus:focus-visible::after {
-    content: "";
-    position: absolute;
-    inset: -4px;
-    border: 2px solid transparent;
-    border-image-source: var(--pencil-border-svg);
-    border-image-slice: 16 fill;
-    border-image-width: 16px;
-    border-image-repeat: round;
-    pointer-events: none;
-    animation: pencil-draw-on var(--pencil-motion-draw) var(--pencil-motion-ease);
-    color: var(--pencil-stroke-color);
+  .pencil-focus:focus-visible {
+    box-shadow: var(--pencil-focus-ring);
   }
 
-  @keyframes pencil-draw-on {
-    from {
-      clip-path: inset(0 100% 0 0);
-    }
-    to {
-      clip-path: inset(0 0 0 0);
-    }
+  .pencil-link {
+    color: var(--pencil-ink);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .pencil-link:hover {
+    color: var(--pencil-ink-soft);
+  }
+
+  .pencil-checkbox-mark::before {
+    content: "x";
+    font-family: var(--pencil-font-display);
+    font-size: 1.4em;
+    line-height: 0.5;
+    color: currentColor;
+  }
+
+  .pencil-radio-dot {
+    background-color: currentColor;
   }
 
   .pencil-stroke-draw-on {
@@ -229,14 +133,16 @@
     }
   }
 
-  [data-pencil-randomness="off"] .pencil-border {
-    --pencil-border-svg: var(--pencil-border-svg-1);
+  @keyframes pencil-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .pencil-focus:focus-visible::after {
-      animation: none;
-    }
     .pencil-stroke-draw-on {
       animation: none;
       stroke-dashoffset: 0;

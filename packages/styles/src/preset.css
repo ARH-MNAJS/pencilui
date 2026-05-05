@@ -4,7 +4,15 @@
 @theme {
   --color-paper: var(--pencil-paper);
   --color-ink: var(--pencil-ink);
+  --color-ink-soft: var(--pencil-ink-soft);
   --color-rule: var(--pencil-rule);
   --color-muted: var(--pencil-muted);
+  --color-disabled: var(--pencil-disabled);
   --color-danger: var(--pencil-danger);
+  --color-success: var(--pencil-success);
+  --color-warning: var(--pencil-warning);
+  --color-info: var(--pencil-info);
+  --font-body: var(--pencil-font-body);
+  --font-display: var(--pencil-font-display);
+  --font-mono: var(--pencil-font-mono);
 }
