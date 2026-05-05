@@ -19,8 +19,8 @@ describe("Checkbox", () => {
     expect(screen.getByRole("checkbox")).toHaveAttribute("data-state", "checked")
   })
 
-  it("applies sketch-control props as classes", () => {
-    render(<Checkbox sloppiness="high" seed={2} aria-label="Accept" />)
-    expect(screen.getByRole("checkbox")).toHaveClass("pencil-sloppiness-high", "pencil-seed-2")
+  it("emits a per-instance --pencil-radius CSS variable", () => {
+    render(<Checkbox aria-label="Accept" />)
+    expect(screen.getByRole("checkbox").style.getPropertyValue("--pencil-radius")).toMatch(/\//)
   })
 })

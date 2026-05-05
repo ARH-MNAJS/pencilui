@@ -1,17 +1,22 @@
+"use client"
+
 import { cva, type VariantProps } from "class-variance-authority"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 const badgeVariants = cva(
-  "pencil-border pencil-edges-pill pencil-sloppiness-medium inline-flex items-center px-2.5 py-0.5 text-xs font-medium",
+  "pencil-border pencil-prose-body inline-flex items-center px-3 py-0.5 text-xs",
   {
     variants: {
       variant: {
-        default: "pencil-fill-solid text-[var(--pencil-paper)]",
-        secondary: "pencil-fill-solid bg-[var(--pencil-muted)] text-[var(--pencil-paper)]",
-        destructive: "pencil-fill-solid bg-[var(--pencil-danger)] text-[var(--pencil-paper)]",
-        outline: "pencil-fill-none text-[var(--pencil-ink)]",
+        default: "pencil-fill-solid",
+        secondary:
+          "pencil-fill-solid bg-[var(--pencil-ink-soft)] text-[var(--pencil-paper)] [--pencil-stroke-color:var(--pencil-ink-soft)]",
+        destructive:
+          "pencil-fill-solid bg-[var(--pencil-danger)] text-[var(--pencil-paper)] [--pencil-stroke-color:var(--pencil-danger)]",
+        outline: "pencil-fill-paper",
       },
     },
     defaultVariants: {
@@ -21,17 +26,24 @@ const badgeVariants = cva(
 )
 
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {
+  pencilSeed?: string
+}
 
 export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
-  { className, variant, ...props },
+  { className, variant, pencilSeed, style, ...props },
   ref,
 ) {
+  const radius = usePencilRadius(
+    "badge",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <div
       ref={ref}
       data-slot="badge"
       className={cn(badgeVariants({ variant }), className)}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )

@@ -1,8 +1,11 @@
+"use client"
+
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { cva } from "class-variance-authority"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -76,19 +79,30 @@ export const NavigationMenuContent = React.forwardRef<
 
 export const NavigationMenuLink = NavigationMenuPrimitive.Link
 
+export interface NavigationMenuViewportProps extends React.ComponentPropsWithoutRef<
+  typeof NavigationMenuPrimitive.Viewport
+> {
+  pencilSeed?: string
+}
+
 export const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
->(function NavigationMenuViewport({ className, ...props }, ref) {
+  NavigationMenuViewportProps
+>(function NavigationMenuViewport({ className, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "popover",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <div className="absolute left-0 top-full flex justify-center">
       <NavigationMenuPrimitive.Viewport
         ref={ref}
         data-slot="navigation-menu-viewport"
         className={cn(
-          "pencil-border origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden bg-[var(--pencil-paper)] text-[var(--pencil-ink)] shadow md:w-[var(--radix-navigation-menu-viewport-width)]",
+          "pencil-border pencil-fill-paper origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden text-[var(--pencil-ink)] shadow md:w-[var(--radix-navigation-menu-viewport-width)]",
           className,
         )}
+        style={{ ...radius, ...style }}
         {...props}
       />
     </div>

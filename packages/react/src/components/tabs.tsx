@@ -1,31 +1,53 @@
+"use client"
+
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const Tabs = TabsPrimitive.Root
 
+export interface TabsListProps extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> {
+  pencilSeed?: string
+}
+
 export const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
->(function TabsList({ className, ...props }, ref) {
+  TabsListProps
+>(function TabsList({ className, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "badge",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <TabsPrimitive.List
       ref={ref}
       data-slot="tabs-list"
       className={cn(
-        "pencil-border inline-flex h-10 items-center justify-center bg-[var(--pencil-paper)] p-1 text-[var(--pencil-muted)]",
+        "pencil-border pencil-fill-paper inline-flex h-10 items-center justify-center p-1 text-[var(--pencil-muted)]",
         className,
       )}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )
 })
 
+export interface TabsTriggerProps extends React.ComponentPropsWithoutRef<
+  typeof TabsPrimitive.Trigger
+> {
+  pencilSeed?: string
+}
+
 export const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(function TabsTrigger({ className, ...props }, ref) {
+  TabsTriggerProps
+>(function TabsTrigger({ className, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "navTab",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <TabsPrimitive.Trigger
       ref={ref}
@@ -34,6 +56,7 @@ export const TabsTrigger = React.forwardRef<
         "pencil-focus inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-[var(--pencil-ink)] data-[state=active]:text-[var(--pencil-paper)]",
         className,
       )}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )

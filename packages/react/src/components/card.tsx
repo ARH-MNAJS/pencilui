@@ -1,22 +1,32 @@
+"use client"
+
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
-export const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  function Card({ className, ...props }, ref) {
-    return (
-      <div
-        ref={ref}
-        data-slot="card"
-        className={cn(
-          "pencil-border bg-[var(--pencil-paper)] text-[var(--pencil-ink)] shadow-sm",
-          className,
-        )}
-        {...props}
-      />
-    )
-  },
-)
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  pencilSeed?: string
+}
+
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
+  { className, pencilSeed, style, ...props },
+  ref,
+) {
+  const radius = usePencilRadius(
+    "card",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
+  return (
+    <div
+      ref={ref}
+      data-slot="card"
+      className={cn("pencil-border pencil-fill-paper", className)}
+      style={{ ...radius, ...style }}
+      {...props}
+    />
+  )
+})
 
 export const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   function CardHeader({ className, ...props }, ref) {
@@ -39,7 +49,7 @@ export const CardTitle = React.forwardRef<
     <h3
       ref={ref}
       data-slot="card-title"
-      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+      className={cn("pencil-prose-display text-2xl leading-tight tracking-tight", className)}
       {...props}
     />
   )

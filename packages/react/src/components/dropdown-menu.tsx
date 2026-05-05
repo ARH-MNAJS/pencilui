@@ -1,8 +1,11 @@
+"use client"
+
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import * as React from "react"
 
 import { CheckSketch, RadioDotSketch } from "./sketches"
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const DropdownMenu = DropdownMenuPrimitive.Root
 export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
@@ -30,27 +33,48 @@ export const DropdownMenuSubTrigger = React.forwardRef<
   )
 })
 
+export interface DropdownMenuSubContentProps extends React.ComponentPropsWithoutRef<
+  typeof DropdownMenuPrimitive.SubContent
+> {
+  pencilSeed?: string
+}
+
 export const DropdownMenuSubContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
->(function DropdownMenuSubContent({ className, ...props }, ref) {
+  DropdownMenuSubContentProps
+>(function DropdownMenuSubContent({ className, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "dropdown",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <DropdownMenuPrimitive.SubContent
       ref={ref}
       data-slot="dropdown-menu-sub-content"
       className={cn(
-        "pencil-border z-50 min-w-32 overflow-hidden bg-[var(--pencil-paper)] p-1 text-[var(--pencil-ink)] shadow-md",
+        "pencil-border pencil-fill-paper z-50 min-w-32 overflow-hidden p-1 text-[var(--pencil-ink)] shadow-md",
         className,
       )}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )
 })
 
+export interface DropdownMenuContentProps extends React.ComponentPropsWithoutRef<
+  typeof DropdownMenuPrimitive.Content
+> {
+  pencilSeed?: string
+}
+
 export const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(function DropdownMenuContent({ className, sideOffset = 4, ...props }, ref) {
+  DropdownMenuContentProps
+>(function DropdownMenuContent({ className, sideOffset = 4, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "dropdown",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
@@ -58,9 +82,10 @@ export const DropdownMenuContent = React.forwardRef<
         sideOffset={sideOffset}
         data-slot="dropdown-menu-content"
         className={cn(
-          "pencil-border z-50 min-w-32 overflow-hidden bg-[var(--pencil-paper)] p-1 text-[var(--pencil-ink)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "pencil-border pencil-fill-paper z-50 min-w-32 overflow-hidden p-1 text-[var(--pencil-ink)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           className,
         )}
+        style={{ ...radius, ...style }}
         {...props}
       />
     </DropdownMenuPrimitive.Portal>

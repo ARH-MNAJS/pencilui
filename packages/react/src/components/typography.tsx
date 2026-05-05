@@ -1,6 +1,9 @@
+"use client"
+
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const TypographyH1 = React.forwardRef<
   HTMLHeadingElement,
@@ -10,7 +13,10 @@ export const TypographyH1 = React.forwardRef<
     <h1
       ref={ref}
       data-slot="typography-h1"
-      className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl", className)}
+      className={cn(
+        "pencil-prose-display scroll-m-20 text-4xl tracking-tight lg:text-5xl",
+        className,
+      )}
       {...props}
     />
   )
@@ -25,7 +31,7 @@ export const TypographyH2 = React.forwardRef<
       ref={ref}
       data-slot="typography-h2"
       className={cn(
-        "scroll-m-20 border-b border-[var(--pencil-rule)] pb-2 text-3xl font-semibold tracking-tight first:mt-0",
+        "pencil-prose-display scroll-m-20 border-b border-[var(--pencil-rule)] pb-2 text-3xl tracking-tight first:mt-0",
         className,
       )}
       {...props}
@@ -41,7 +47,7 @@ export const TypographyH3 = React.forwardRef<
     <h3
       ref={ref}
       data-slot="typography-h3"
-      className={cn("scroll-m-20 text-2xl font-semibold tracking-tight", className)}
+      className={cn("pencil-prose-display scroll-m-20 text-2xl tracking-tight", className)}
       {...props}
     />
   )
@@ -55,7 +61,7 @@ export const TypographyH4 = React.forwardRef<
     <h4
       ref={ref}
       data-slot="typography-h4"
-      className={cn("scroll-m-20 text-xl font-semibold tracking-tight", className)}
+      className={cn("pencil-prose-display scroll-m-20 text-xl tracking-tight", className)}
       {...props}
     />
   )
@@ -78,12 +84,14 @@ export const TypographyP = React.forwardRef<
 export const TypographyBlockquote = React.forwardRef<
   HTMLQuoteElement,
   React.HTMLAttributes<HTMLQuoteElement>
->(function TypographyBlockquote({ className, ...props }, ref) {
+>(function TypographyBlockquote({ className, style, ...props }, ref) {
+  const radius = usePencilRadius("blockquote")
   return (
     <blockquote
       ref={ref}
       data-slot="typography-blockquote"
-      className={cn("mt-6 border-l-2 border-[var(--pencil-rule)] pl-6 italic", className)}
+      className={cn("mt-6 border-l-2 border-[var(--pencil-ink)] pl-6 italic", className)}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )
@@ -92,15 +100,17 @@ export const TypographyBlockquote = React.forwardRef<
 export const TypographyInlineCode = React.forwardRef<
   HTMLElement,
   React.HTMLAttributes<HTMLElement>
->(function TypographyInlineCode({ className, ...props }, ref) {
+>(function TypographyInlineCode({ className, style, ...props }, ref) {
+  const radius = usePencilRadius("badge")
   return (
     <code
       ref={ref}
       data-slot="typography-code"
       className={cn(
-        "pencil-border relative bg-[var(--pencil-rule)] px-[0.3rem] py-[0.2rem] font-mono text-sm",
+        "pencil-border pencil-prose-mono relative bg-[var(--pencil-paper-tint)] px-[0.4rem] py-[0.2rem] text-sm",
         className,
       )}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )

@@ -8,10 +8,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { cn } from "../lib/cn"
 
 export interface DatePickerProps {
-  value?: Date
-  onChange?: (date: Date | undefined) => void
-  placeholder?: string
-  className?: string
+  value?: Date | undefined
+  onChange?: ((date: Date | undefined) => void) | undefined
+  placeholder?: string | undefined
+  className?: string | undefined
 }
 
 export function DatePicker({

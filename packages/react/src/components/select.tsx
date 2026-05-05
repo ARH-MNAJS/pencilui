@@ -1,16 +1,19 @@
+"use client"
+
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { cva, type VariantProps } from "class-variance-authority"
 import * as React from "react"
 
 import { CheckSketch } from "./sketches"
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const Select = SelectPrimitive.Root
 export const SelectGroup = SelectPrimitive.Group
 export const SelectValue = SelectPrimitive.Value
 
 const selectTriggerVariants = cva(
-  "pencil-border pencil-focus relative inline-flex h-10 w-full items-center justify-between gap-2 px-3 text-sm placeholder:text-[var(--pencil-muted)] disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+  "pencil-border pencil-focus pencil-fill-paper pencil-prose-body relative inline-flex h-10 w-full items-center justify-between gap-2 px-3 text-sm placeholder:text-[var(--pencil-muted)] disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
   {
     variants: {
       strokeWidth: {
@@ -18,35 +21,9 @@ const selectTriggerVariants = cva(
         default: "pencil-stroke-default",
         thick: "pencil-stroke-thick",
       },
-      edges: {
-        rect: "pencil-edges-rect",
-        rounded: "pencil-edges-rounded",
-        pill: "pencil-edges-pill",
-        organic: "pencil-edges-organic",
-      },
-      sloppiness: {
-        low: "pencil-sloppiness-low",
-        medium: "pencil-sloppiness-medium",
-        high: "pencil-sloppiness-high",
-      },
-      strokeStyle: {
-        solid: "",
-        dashed: "pencil-stroke--dashed",
-        dotted: "pencil-stroke--dotted",
-        double: "pencil-stroke--double",
-      },
-      seed: {
-        1: "pencil-seed-1",
-        2: "pencil-seed-2",
-        3: "pencil-seed-3",
-        4: "pencil-seed-4",
-      },
     },
     defaultVariants: {
       strokeWidth: "default",
-      edges: "rounded",
-      sloppiness: "medium",
-      strokeStyle: "solid",
     },
   },
 )
@@ -54,23 +31,24 @@ const selectTriggerVariants = cva(
 export interface SelectTriggerProps
   extends
     React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
-    VariantProps<typeof selectTriggerVariants> {}
+    VariantProps<typeof selectTriggerVariants> {
+  pencilSeed?: string
+}
 
 export const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(function SelectTrigger(
-  { className, strokeWidth, edges, sloppiness, strokeStyle, seed, children, ...props },
-  ref,
-) {
+>(function SelectTrigger({ className, strokeWidth, children, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "input",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <SelectPrimitive.Trigger
       ref={ref}
       data-slot="select-trigger"
-      className={cn(
-        selectTriggerVariants({ strokeWidth, edges, sloppiness, strokeStyle, seed }),
-        className,
-      )}
+      className={cn(selectTriggerVariants({ strokeWidth }), className)}
+      style={{ ...radius, ...style }}
       {...props}
     >
       {children}
@@ -94,10 +72,23 @@ export const SelectTrigger = React.forwardRef<
   )
 })
 
+export interface SelectContentProps extends React.ComponentPropsWithoutRef<
+  typeof SelectPrimitive.Content
+> {
+  pencilSeed?: string
+}
+
 export const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
->(function SelectContent({ className, children, position = "popper", ...props }, ref) {
+  SelectContentProps
+>(function SelectContent(
+  { className, children, position = "popper", pencilSeed, style, ...props },
+  ref,
+) {
+  const radius = usePencilRadius(
+    "dropdown",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
@@ -105,11 +96,12 @@ export const SelectContent = React.forwardRef<
         data-slot="select-content"
         position={position}
         className={cn(
-          "pencil-border pencil-edges-rounded pencil-sloppiness-medium relative z-50 min-w-32 overflow-hidden bg-[var(--pencil-paper)] text-[var(--pencil-ink)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "pencil-border pencil-fill-paper relative z-50 min-w-32 overflow-hidden text-[var(--pencil-ink)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           position === "popper" &&
             "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
           className,
         )}
+        style={{ ...radius, ...style }}
         {...props}
       >
         <SelectPrimitive.Viewport

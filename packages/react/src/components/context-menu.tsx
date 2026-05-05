@@ -1,8 +1,11 @@
+"use client"
+
 import * as ContextMenuPrimitive from "@radix-ui/react-context-menu"
 import * as React from "react"
 
 import { CheckSketch, RadioDotSketch } from "./sketches"
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const ContextMenu = ContextMenuPrimitive.Root
 export const ContextMenuTrigger = ContextMenuPrimitive.Trigger
@@ -30,36 +33,58 @@ export const ContextMenuSubTrigger = React.forwardRef<
   )
 })
 
+export interface ContextMenuSubContentProps extends React.ComponentPropsWithoutRef<
+  typeof ContextMenuPrimitive.SubContent
+> {
+  pencilSeed?: string
+}
+
 export const ContextMenuSubContent = React.forwardRef<
   React.ElementRef<typeof ContextMenuPrimitive.SubContent>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.SubContent>
->(function ContextMenuSubContent({ className, ...props }, ref) {
+  ContextMenuSubContentProps
+>(function ContextMenuSubContent({ className, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "dropdown",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <ContextMenuPrimitive.SubContent
       ref={ref}
       data-slot="context-menu-sub-content"
       className={cn(
-        "pencil-border z-50 min-w-32 overflow-hidden bg-[var(--pencil-paper)] p-1 text-[var(--pencil-ink)] shadow-md",
+        "pencil-border pencil-fill-paper z-50 min-w-32 overflow-hidden p-1 text-[var(--pencil-ink)] shadow-md",
         className,
       )}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )
 })
 
+export interface ContextMenuContentProps extends React.ComponentPropsWithoutRef<
+  typeof ContextMenuPrimitive.Content
+> {
+  pencilSeed?: string
+}
+
 export const ContextMenuContent = React.forwardRef<
   React.ElementRef<typeof ContextMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Content>
->(function ContextMenuContent({ className, ...props }, ref) {
+  ContextMenuContentProps
+>(function ContextMenuContent({ className, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "dropdown",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <ContextMenuPrimitive.Portal>
       <ContextMenuPrimitive.Content
         ref={ref}
         data-slot="context-menu-content"
         className={cn(
-          "pencil-border z-50 min-w-32 overflow-hidden bg-[var(--pencil-paper)] p-1 text-[var(--pencil-ink)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "pencil-border pencil-fill-paper z-50 min-w-32 overflow-hidden p-1 text-[var(--pencil-ink)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           className,
         )}
+        style={{ ...radius, ...style }}
         {...props}
       />
     </ContextMenuPrimitive.Portal>

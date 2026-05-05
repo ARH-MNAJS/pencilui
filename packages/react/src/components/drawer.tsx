@@ -1,7 +1,10 @@
+"use client"
+
 import * as React from "react"
 import { Drawer as DrawerPrimitive } from "vaul"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const Drawer = (props: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
   <DrawerPrimitive.Root shouldScaleBackground {...props} />
@@ -28,10 +31,20 @@ export const DrawerOverlay = React.forwardRef<
   )
 })
 
+export interface DrawerContentProps extends React.ComponentPropsWithoutRef<
+  typeof DrawerPrimitive.Content
+> {
+  pencilSeed?: string
+}
+
 export const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(function DrawerContent({ className, children, ...props }, ref) {
+  DrawerContentProps
+>(function DrawerContent({ className, children, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "modal",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <DrawerPortal>
       <DrawerOverlay />
@@ -39,9 +52,10 @@ export const DrawerContent = React.forwardRef<
         ref={ref}
         data-slot="drawer-content"
         className={cn(
-          "pencil-border fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col bg-[var(--pencil-paper)]",
+          "pencil-border pencil-fill-paper fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col",
           className,
         )}
+        style={{ ...radius, ...style }}
         {...props}
       >
         <div className="mx-auto mt-4 h-1.5 w-12 rounded-full bg-[var(--pencil-rule)]" />
@@ -75,7 +89,7 @@ export const DrawerTitle = React.forwardRef<
     <DrawerPrimitive.Title
       ref={ref}
       data-slot="drawer-title"
-      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+      className={cn("pencil-prose-display text-2xl leading-tight tracking-tight", className)}
       {...props}
     />
   )

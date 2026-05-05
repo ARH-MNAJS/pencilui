@@ -20,10 +20,16 @@ describe("Input", () => {
     expect(screen.getByPlaceholderText("email")).toHaveClass("pencil-border", "pencil-focus")
   })
 
-  it("applies sketch-control props as classes", () => {
-    render(<Input placeholder="email" strokeWidth="thick" sloppiness="high" seed={3} />)
-    const el = screen.getByPlaceholderText("email")
-    expect(el).toHaveClass("pencil-stroke-thick", "pencil-sloppiness-high", "pencil-seed-3")
+  it("applies stroke width variant", () => {
+    render(<Input placeholder="email" strokeWidth="thick" />)
+    expect(screen.getByPlaceholderText("email")).toHaveClass("pencil-stroke-thick")
+  })
+
+  it("emits a per-instance --pencil-radius CSS variable", () => {
+    render(<Input placeholder="email" />)
+    expect(screen.getByPlaceholderText("email").style.getPropertyValue("--pencil-radius")).toMatch(
+      /\//,
+    )
   })
 
   it("forwards ref", () => {

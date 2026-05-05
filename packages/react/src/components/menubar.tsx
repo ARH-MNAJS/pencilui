@@ -1,8 +1,11 @@
+"use client"
+
 import * as MenubarPrimitive from "@radix-ui/react-menubar"
 import * as React from "react"
 
 import { CheckSketch, RadioDotSketch } from "./sketches"
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const MenubarMenu = (
   props: React.ComponentProps<typeof MenubarPrimitive.Menu>,
@@ -14,18 +17,29 @@ export const MenubarSub = (
 ): React.ReactElement => <MenubarPrimitive.Sub {...props} />
 export const MenubarRadioGroup = MenubarPrimitive.RadioGroup
 
+export interface MenubarRootProps extends React.ComponentPropsWithoutRef<
+  typeof MenubarPrimitive.Root
+> {
+  pencilSeed?: string
+}
+
 export const Menubar = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Root>
->(function Menubar({ className, ...props }, ref) {
+  MenubarRootProps
+>(function Menubar({ className, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "navbar",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <MenubarPrimitive.Root
       ref={ref}
       data-slot="menubar"
       className={cn(
-        "pencil-border flex h-10 items-center space-x-1 bg-[var(--pencil-paper)] p-1",
+        "pencil-border pencil-fill-paper flex h-10 items-center space-x-1 p-1",
         className,
       )}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )
@@ -67,30 +81,51 @@ export const MenubarSubTrigger = React.forwardRef<
   )
 })
 
+export interface MenubarSubContentProps extends React.ComponentPropsWithoutRef<
+  typeof MenubarPrimitive.SubContent
+> {
+  pencilSeed?: string
+}
+
 export const MenubarSubContent = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.SubContent>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.SubContent>
->(function MenubarSubContent({ className, ...props }, ref) {
+  MenubarSubContentProps
+>(function MenubarSubContent({ className, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "dropdown",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <MenubarPrimitive.SubContent
       ref={ref}
       data-slot="menubar-sub-content"
       className={cn(
-        "pencil-border z-50 min-w-32 overflow-hidden bg-[var(--pencil-paper)] p-1 text-[var(--pencil-ink)] shadow-md",
+        "pencil-border pencil-fill-paper z-50 min-w-32 overflow-hidden p-1 text-[var(--pencil-ink)] shadow-md",
         className,
       )}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )
 })
 
+export interface MenubarContentProps extends React.ComponentPropsWithoutRef<
+  typeof MenubarPrimitive.Content
+> {
+  pencilSeed?: string
+}
+
 export const MenubarContent = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Content>
+  MenubarContentProps
 >(function MenubarContent(
-  { className, align = "start", alignOffset = -4, sideOffset = 8, ...props },
+  { className, align = "start", alignOffset = -4, sideOffset = 8, pencilSeed, style, ...props },
   ref,
 ) {
+  const radius = usePencilRadius(
+    "dropdown",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <MenubarPrimitive.Portal>
       <MenubarPrimitive.Content
@@ -100,9 +135,10 @@ export const MenubarContent = React.forwardRef<
         sideOffset={sideOffset}
         data-slot="menubar-content"
         className={cn(
-          "pencil-border z-50 min-w-48 overflow-hidden bg-[var(--pencil-paper)] p-1 text-[var(--pencil-ink)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "pencil-border pencil-fill-paper z-50 min-w-48 overflow-hidden p-1 text-[var(--pencil-ink)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           className,
         )}
+        style={{ ...radius, ...style }}
         {...props}
       />
     </MenubarPrimitive.Portal>

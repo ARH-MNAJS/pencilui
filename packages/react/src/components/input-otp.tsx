@@ -4,6 +4,7 @@ import { OTPInput, OTPInputContext } from "input-otp"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
@@ -39,21 +40,23 @@ export const InputOTPGroup = React.forwardRef<HTMLDivElement, React.HTMLAttribut
 export const InputOTPSlot = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & { index: number }
->(function InputOTPSlot({ index, className, ...props }, ref) {
+>(function InputOTPSlot({ index, className, style, ...props }, ref) {
   const ctx = React.useContext(OTPInputContext)
   const slot = ctx?.slots?.[index]
   const char = slot?.char ?? ""
   const hasFakeCaret = slot?.hasFakeCaret ?? false
   const isActive = slot?.isActive ?? false
+  const radius = usePencilRadius("input", { seed: `otp-${index}` })
   return (
     <div
       ref={ref}
       data-slot="input-otp-slot"
       className={cn(
-        "pencil-border relative flex h-10 w-10 items-center justify-center text-sm transition-all",
+        "pencil-border pencil-fill-paper pencil-prose-body relative flex h-10 w-10 items-center justify-center text-sm transition-all",
         isActive && "z-10 ring-2 ring-[var(--pencil-ink)]",
         className,
       )}
+      style={{ ...radius, ...style }}
       {...props}
     >
       {char}

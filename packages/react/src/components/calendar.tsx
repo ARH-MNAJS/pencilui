@@ -1,11 +1,31 @@
 "use client"
 
-import { DayPicker, type DayPickerProps } from "react-day-picker"
+import { DayPicker, type DayButtonProps, type DayPickerProps } from "react-day-picker"
 
-import { buttonVariants } from "./button"
+import { Button } from "./button"
 import { cn } from "../lib/cn"
 
 export type CalendarProps = DayPickerProps
+
+function DayButton({ day, modifiers, className, ...props }: DayButtonProps) {
+  const variant = modifiers.selected ? "default" : "ghost"
+  return (
+    <Button
+      type="button"
+      variant={variant}
+      size="icon"
+      pencilSeed={`day-${day.date.toISOString()}`}
+      className={cn(
+        "size-8 p-0 font-normal",
+        modifiers.outside && "text-[var(--pencil-muted)] opacity-50",
+        modifiers.disabled && "text-[var(--pencil-muted)] opacity-50",
+        modifiers.today && !modifiers.selected && "ring-1 ring-[var(--pencil-ink)]",
+        className,
+      )}
+      {...props}
+    />
+  )
+}
 
 export function Calendar({
   className,
@@ -21,30 +41,24 @@ export function Calendar({
       classNames={{
         months: "flex flex-col sm:flex-row gap-2",
         month: "flex flex-col gap-4",
-        caption: "flex justify-center pt-1 relative items-center w-full",
-        caption_label: "text-sm font-medium",
-        nav: "flex items-center gap-1",
-        nav_button: cn(
-          buttonVariants({ variant: "outline", size: "icon" }),
-          "size-7 bg-transparent p-0 opacity-50 hover:opacity-100",
-        ),
-        nav_button_previous: "absolute left-1",
-        nav_button_next: "absolute right-1",
-        table: "w-full border-collapse space-x-1",
-        head_row: "flex",
-        head_cell: "text-[var(--pencil-muted)] rounded-md w-8 font-normal text-[0.8rem]",
-        row: "flex w-full mt-2",
-        cell: "size-8 text-center text-sm p-0 relative",
-        day: cn(
-          buttonVariants({ variant: "ghost", size: "icon" }),
-          "size-8 p-0 font-normal aria-selected:opacity-100",
-        ),
-        day_selected: "pencil-fill-solid text-[var(--pencil-paper)]",
-        day_today: "border border-[var(--pencil-ink)]",
-        day_outside: "text-[var(--pencil-muted)] opacity-50",
-        day_disabled: "text-[var(--pencil-muted)] opacity-50",
-        day_hidden: "invisible",
+        month_caption: "flex justify-center pt-1 relative items-center w-full",
+        caption_label: "pencil-prose-display text-base",
+        nav: "flex items-center justify-between absolute inset-x-1 top-1",
+        button_previous: "size-7 opacity-50 hover:opacity-100",
+        button_next: "size-7 opacity-50 hover:opacity-100",
+        month_grid: "w-full border-collapse",
+        weekdays: "flex",
+        weekday: "text-[var(--pencil-muted)] w-8 font-normal text-[0.8rem]",
+        week: "flex w-full mt-2",
+        day: "size-8 text-center text-sm p-0 relative",
+        day_button: "size-8",
+        outside: "text-[var(--pencil-muted)] opacity-50",
+        disabled: "text-[var(--pencil-muted)] opacity-50",
+        hidden: "invisible",
         ...classNames,
+      }}
+      components={{
+        DayButton,
       }}
       {...props}
     />

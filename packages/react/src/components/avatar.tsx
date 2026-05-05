@@ -1,24 +1,32 @@
+"use client"
+
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
-export const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
->(function Avatar({ className, ...props }, ref) {
-  return (
-    <AvatarPrimitive.Root
-      ref={ref}
-      data-slot="avatar"
-      className={cn(
-        "pencil-border pencil-edges-pill relative flex size-10 shrink-0 overflow-hidden",
-        className,
-      )}
-      {...props}
-    />
-  )
-})
+export interface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
+  pencilSeed?: string
+}
+
+export const Avatar = React.forwardRef<React.ElementRef<typeof AvatarPrimitive.Root>, AvatarProps>(
+  function Avatar({ className, pencilSeed, style, ...props }, ref) {
+    const radius = usePencilRadius(
+      "avatar",
+      pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+    )
+    return (
+      <AvatarPrimitive.Root
+        ref={ref}
+        data-slot="avatar"
+        className={cn("pencil-border relative flex size-10 shrink-0 overflow-hidden", className)}
+        style={{ ...radius, ...style }}
+        {...props}
+      />
+    )
+  },
+)
 
 export const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
@@ -43,7 +51,7 @@ export const AvatarFallback = React.forwardRef<
       ref={ref}
       data-slot="avatar-fallback"
       className={cn(
-        "flex h-full w-full items-center justify-center bg-[var(--pencil-rule)] text-[var(--pencil-ink)]",
+        "pencil-prose-display flex h-full w-full items-center justify-center bg-[var(--pencil-paper-tint)] text-[var(--pencil-ink)]",
         className,
       )}
       {...props}

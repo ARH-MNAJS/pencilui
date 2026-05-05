@@ -1,7 +1,10 @@
+"use client"
+
 import { Slot } from "@radix-ui/react-slot"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 interface SidebarContextValue {
   collapsed: boolean
@@ -19,10 +22,11 @@ function useSidebar() {
 export interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   defaultCollapsed?: boolean
   onCollapsedChange?: (collapsed: boolean) => void
+  pencilSeed?: string
 }
 
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(function Sidebar(
-  { className, children, defaultCollapsed = false, onCollapsedChange, ...props },
+  { className, children, defaultCollapsed = false, onCollapsedChange, pencilSeed, style, ...props },
   ref,
 ) {
   const [collapsed, setCollapsedState] = React.useState(defaultCollapsed)
@@ -33,6 +37,10 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(function Side
     },
     [onCollapsedChange],
   )
+  const radius = usePencilRadius(
+    "card",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <SidebarContext.Provider value={{ collapsed, setCollapsed }}>
       <aside
@@ -40,10 +48,11 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(function Side
         data-slot="sidebar"
         data-collapsed={collapsed}
         className={cn(
-          "pencil-border flex h-full flex-col bg-[var(--pencil-paper)] transition-[width] duration-200",
+          "pencil-border pencil-fill-paper flex h-full flex-col transition-[width] duration-200",
           collapsed ? "w-16" : "w-64",
           className,
         )}
+        style={{ ...radius, ...style }}
         {...props}
       >
         {children}

@@ -1,16 +1,29 @@
+"use client"
+
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
-export const Skeleton = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  function Skeleton({ className, ...props }, ref) {
-    return (
-      <div
-        ref={ref}
-        data-slot="skeleton"
-        className={cn("pencil-border animate-pulse bg-[var(--pencil-rule)]", className)}
-        {...props}
-      />
-    )
-  },
-)
+export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
+  pencilSeed?: string
+}
+
+export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(function Skeleton(
+  { className, pencilSeed, style, ...props },
+  ref,
+) {
+  const radius = usePencilRadius(
+    "skeleton",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
+  return (
+    <div
+      ref={ref}
+      data-slot="skeleton"
+      className={cn("animate-pulse bg-[var(--pencil-paper-tint)]", className)}
+      style={{ ...radius, borderRadius: "var(--pencil-radius)", ...style }}
+      {...props}
+    />
+  )
+})

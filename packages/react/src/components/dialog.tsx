@@ -1,7 +1,10 @@
+"use client"
+
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const Dialog = DialogPrimitive.Root
 export const DialogTrigger = DialogPrimitive.Trigger
@@ -25,10 +28,20 @@ export const DialogOverlay = React.forwardRef<
   )
 })
 
+export interface DialogContentProps extends React.ComponentPropsWithoutRef<
+  typeof DialogPrimitive.Content
+> {
+  pencilSeed?: string
+}
+
 export const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(function DialogContent({ className, children, ...props }, ref) {
+  DialogContentProps
+>(function DialogContent({ className, children, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "modal",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <DialogPortal>
       <DialogOverlay />
@@ -36,9 +49,10 @@ export const DialogContent = React.forwardRef<
         ref={ref}
         data-slot="dialog-content"
         className={cn(
-          "pencil-border fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 bg-[var(--pencil-paper)] p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "pencil-border pencil-fill-paper fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           className,
         )}
+        style={{ ...radius, ...style }}
         {...props}
       >
         {children}
@@ -71,7 +85,7 @@ export const DialogTitle = React.forwardRef<
     <DialogPrimitive.Title
       ref={ref}
       data-slot="dialog-title"
-      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+      className={cn("pencil-prose-display text-2xl leading-tight tracking-tight", className)}
       {...props}
     />
   )

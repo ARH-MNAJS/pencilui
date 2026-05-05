@@ -32,8 +32,8 @@ export const ResizableHandle = ({
     {...props}
   >
     {withHandle && (
-      <div className="pencil-border z-10 flex h-4 w-3 items-center justify-center bg-[var(--pencil-paper)]">
-        <span className="size-2 rounded-full bg-[var(--pencil-muted)]" />
+      <div className="z-10 flex h-4 w-3 items-center justify-center rounded-sm bg-[var(--pencil-ink)]">
+        <span className="size-1.5 rounded-full bg-[var(--pencil-paper)]" />
       </div>
     )}
   </ResizablePrimitive.PanelResizeHandle>

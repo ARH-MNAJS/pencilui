@@ -1,16 +1,18 @@
+"use client"
+
 import { cva, type VariantProps } from "class-variance-authority"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 const alertVariants = cva(
-  "pencil-border relative w-full p-4 text-sm [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg+*]:pl-7",
+  "pencil-border pencil-fill-paper relative w-full p-4 text-sm [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg+*]:pl-7",
   {
     variants: {
       variant: {
-        default: "bg-[var(--pencil-paper)] text-[var(--pencil-ink)]",
-        destructive:
-          "border-[var(--pencil-danger)] bg-[var(--pencil-paper)] text-[var(--pencil-danger)]",
+        default: "",
+        destructive: "[--pencil-stroke-color:var(--pencil-danger)] text-[var(--pencil-danger)]",
       },
     },
     defaultVariants: {
@@ -20,18 +22,25 @@ const alertVariants = cva(
 )
 
 export interface AlertProps
-  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> {}
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> {
+  pencilSeed?: string
+}
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  { className, variant, ...props },
+  { className, variant, pencilSeed, style, ...props },
   ref,
 ) {
+  const radius = usePencilRadius(
+    "alert",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <div
       ref={ref}
       role="alert"
       data-slot="alert"
       className={cn(alertVariants({ variant }), className)}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )
@@ -45,7 +54,7 @@ export const AlertTitle = React.forwardRef<
     <h5
       ref={ref}
       data-slot="alert-title"
-      className={cn("mb-1 font-medium leading-none tracking-tight", className)}
+      className={cn("pencil-prose-display mb-1 leading-none tracking-tight", className)}
       {...props}
     />
   )

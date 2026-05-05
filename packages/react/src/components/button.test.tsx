@@ -16,9 +16,14 @@ describe("Button", () => {
     expect(btn).toHaveClass("pencil-border", "pencil-fill-solid")
   })
 
-  it("applies the scribbled variant", () => {
-    render(<Button variant="scribbled">Scribbled</Button>)
-    expect(screen.getByRole("button")).toHaveClass("pencil-fill-hachure")
+  it("applies the outline variant", () => {
+    render(<Button variant="outline">Outline</Button>)
+    expect(screen.getByRole("button")).toHaveClass("pencil-fill-paper")
+  })
+
+  it("applies stroke width variant", () => {
+    render(<Button strokeWidth="thick">Thick</Button>)
+    expect(screen.getByRole("button")).toHaveClass("pencil-stroke-thick")
   })
 
   it("forwards ref to the underlying button", () => {
@@ -38,19 +43,17 @@ describe("Button", () => {
     expect(link).toHaveClass("pencil-border")
   })
 
-  it("applies sketch-control props as classes", () => {
-    render(
-      <Button strokeWidth="thick" sloppiness="high" edges="organic" seed={2}>
-        Sketchy
-      </Button>,
-    )
+  it("emits a per-instance --pencil-radius CSS variable", () => {
+    render(<Button>Radius</Button>)
     const btn = screen.getByRole("button")
-    expect(btn).toHaveClass(
-      "pencil-stroke-thick",
-      "pencil-sloppiness-high",
-      "pencil-edges-organic",
-      "pencil-seed-2",
-    )
+    expect(btn.style.getPropertyValue("--pencil-radius")).toMatch(/\//)
+  })
+
+  it("derives a stable radius from a custom seed", () => {
+    const { rerender } = render(<Button pencilSeed="alpha">A</Button>)
+    const first = screen.getByRole("button").style.getPropertyValue("--pencil-radius")
+    rerender(<Button pencilSeed="alpha">A</Button>)
+    expect(screen.getByRole("button").style.getPropertyValue("--pencil-radius")).toBe(first)
   })
 
   it("sets data-slot to button", () => {

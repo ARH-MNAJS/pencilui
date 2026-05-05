@@ -1,7 +1,10 @@
+"use client"
+
 import * as React from "react"
 
 import { type ButtonProps, buttonVariants } from "./button"
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
@@ -34,6 +37,7 @@ export const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentPro
 
 type PaginationLinkProps = {
   isActive?: boolean
+  pencilSeed?: string
 } & Pick<ButtonProps, "size"> &
   React.ComponentProps<"a">
 
@@ -41,21 +45,30 @@ export const PaginationLink = ({
   className,
   isActive,
   size = "icon",
+  pencilSeed,
+  style,
   ...props
-}: PaginationLinkProps) => (
-  <a
-    aria-current={isActive ? "page" : undefined}
-    data-slot="pagination-link"
-    className={cn(
-      buttonVariants({
-        variant: isActive ? "outline" : "ghost",
-        size,
-      }),
-      className,
-    )}
-    {...props}
-  />
-)
+}: PaginationLinkProps) => {
+  const radius = usePencilRadius(
+    "pagination",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
+  return (
+    <a
+      aria-current={isActive ? "page" : undefined}
+      data-slot="pagination-link"
+      className={cn(
+        buttonVariants({
+          variant: isActive ? "outline" : "ghost",
+          size,
+        }),
+        className,
+      )}
+      style={{ ...radius, ...style }}
+      {...props}
+    />
+  )
+}
 
 export const PaginationPrevious = ({
   className,

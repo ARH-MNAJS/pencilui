@@ -1,9 +1,12 @@
+"use client"
+
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
 import { cva, type VariantProps } from "class-variance-authority"
 import * as React from "react"
 
 import { RadioDotSketch } from "./sketches"
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
 export const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
@@ -20,7 +23,7 @@ export const RadioGroup = React.forwardRef<
 })
 
 const radioItemVariants = cva(
-  "pencil-border pencil-focus peer relative inline-flex size-5 shrink-0 items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 text-[var(--pencil-ink)]",
+  "pencil-border pencil-focus peer relative inline-flex size-5 shrink-0 items-center justify-center bg-[var(--pencil-paper)] text-[var(--pencil-ink)] disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       strokeWidth: {
@@ -28,35 +31,9 @@ const radioItemVariants = cva(
         default: "pencil-stroke-default",
         thick: "pencil-stroke-thick",
       },
-      edges: {
-        rect: "pencil-edges-rect",
-        rounded: "pencil-edges-rounded",
-        pill: "pencil-edges-pill",
-        organic: "pencil-edges-organic",
-      },
-      sloppiness: {
-        low: "pencil-sloppiness-low",
-        medium: "pencil-sloppiness-medium",
-        high: "pencil-sloppiness-high",
-      },
-      strokeStyle: {
-        solid: "",
-        dashed: "pencil-stroke--dashed",
-        dotted: "pencil-stroke--dotted",
-        double: "pencil-stroke--double",
-      },
-      seed: {
-        1: "pencil-seed-1",
-        2: "pencil-seed-2",
-        3: "pencil-seed-3",
-        4: "pencil-seed-4",
-      },
     },
     defaultVariants: {
       strokeWidth: "default",
-      edges: "pill",
-      sloppiness: "medium",
-      strokeStyle: "solid",
     },
   },
 )
@@ -64,23 +41,24 @@ const radioItemVariants = cva(
 export interface RadioGroupItemProps
   extends
     React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
-    VariantProps<typeof radioItemVariants> {}
+    VariantProps<typeof radioItemVariants> {
+  pencilSeed?: string
+}
 
 export const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   RadioGroupItemProps
->(function RadioGroupItem(
-  { className, strokeWidth, edges, sloppiness, strokeStyle, seed, ...props },
-  ref,
-) {
+>(function RadioGroupItem({ className, strokeWidth, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "radio",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <RadioGroupPrimitive.Item
       ref={ref}
       data-slot="radio-group-item"
-      className={cn(
-        radioItemVariants({ strokeWidth, edges, sloppiness, strokeStyle, seed }),
-        className,
-      )}
+      className={cn(radioItemVariants({ strokeWidth }), className)}
+      style={{ ...radius, ...style }}
       {...props}
     >
       <RadioGroupPrimitive.Indicator className="grid place-items-center">
