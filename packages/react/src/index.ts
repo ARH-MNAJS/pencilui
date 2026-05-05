@@ -261,3 +261,9 @@ export {
   type PencilTokens,
 } from "./provider/pencil-provider"
 export { cn } from "./lib/cn"
+export {
+  getPencilRadius,
+  usePencilRadius,
+  type PencilRadiusKind,
+  type PencilRadiusOptions,
+} from "./lib/use-pencil-radius"
