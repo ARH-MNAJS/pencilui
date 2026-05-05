@@ -40,10 +40,10 @@
   },
   "devDependencies": {
     "@pencilui/eslint-config": "workspace:*",
-    "@size-limit/preset-small-lib": "^11.1.6",
-    "size-limit": "^11.1.6",
+    "@size-limit/preset-small-lib": "^12.1.0",
+    "size-limit": "^12.1.0",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.2"
+    "typescript": "^6.0.3"
   },
   "publishConfig": {
     "access": "public",
