@@ -4,15 +4,14 @@ import { describe, expect, it } from "vitest"
 import { PencilProvider } from "./pencil-provider"
 
 describe("PencilProvider", () => {
-  it("sets data-theme and data-pencil-randomness on its root", () => {
+  it("sets data-theme on its root", () => {
     render(
-      <PencilProvider data-testid="root" defaultTheme="graphite" randomness="off">
+      <PencilProvider data-testid="root" defaultTheme="graphite">
         <span>child</span>
       </PencilProvider>,
     )
     const root = screen.getByTestId("root")
     expect(root).toHaveAttribute("data-theme", "graphite")
-    expect(root).toHaveAttribute("data-pencil-randomness", "off")
   })
 
   it("writes token overrides as inline CSS variables", () => {

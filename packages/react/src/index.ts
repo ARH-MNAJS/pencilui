@@ -256,7 +256,6 @@ export {
   usePencilContext,
   type PencilContextValue,
   type PencilProviderProps,
-  type PencilRandomness,
   type PencilTheme,
   type PencilTokens,
 } from "./provider/pencil-provider"
