@@ -121,7 +121,7 @@ export const CommandItem = React.forwardRef<
       ref={ref}
       data-slot="command-item"
       className={cn(
-        "relative flex cursor-default select-none items-center gap-2 px-2 py-1.5 text-sm outline-none data-[selected=true]:bg-[color-mix(in_srgb,var(--pencil-ink)_10%,transparent)] data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
+        "pencil-option relative flex select-none items-center gap-2 px-3 py-2.5 text-sm outline-none",
         className,
       )}
       {...props}

@@ -96,7 +96,7 @@ export const SelectContent = React.forwardRef<
         data-slot="select-content"
         position={position}
         className={cn(
-          "pencil-border pencil-fill-paper relative z-50 min-w-32 overflow-hidden text-[var(--pencil-ink)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "pencil-border pencil-fill-paper pencil-match-trigger relative z-50 overflow-hidden text-[var(--pencil-ink)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           position === "popper" &&
             "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
           className,
@@ -141,7 +141,7 @@ export const SelectItem = React.forwardRef<
       ref={ref}
       data-slot="select-item"
       className={cn(
-        "relative flex w-full cursor-default select-none items-center gap-2 py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-[color-mix(in_srgb,var(--pencil-ink)_10%,transparent)] data-[disabled]:opacity-50",
+        "pencil-option relative flex w-full select-none items-center gap-2 py-2.5 pl-8 pr-3 text-sm outline-none",
         className,
       )}
       {...props}
