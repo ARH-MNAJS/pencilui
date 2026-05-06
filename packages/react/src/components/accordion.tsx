@@ -1,19 +1,45 @@
+"use client"
+
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
-export const Accordion = AccordionPrimitive.Root
+export const Accordion = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
+>(function Accordion({ className, ...props }, ref) {
+  return (
+    <AccordionPrimitive.Root
+      ref={ref}
+      data-slot="accordion"
+      className={cn("flex flex-col gap-3", className)}
+      {...props}
+    />
+  )
+})
+
+export interface AccordionItemProps extends React.ComponentPropsWithoutRef<
+  typeof AccordionPrimitive.Item
+> {
+  pencilSeed?: string
+}
 
 export const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(function AccordionItem({ className, ...props }, ref) {
+  AccordionItemProps
+>(function AccordionItem({ className, pencilSeed, style, ...props }, ref) {
+  const radius = usePencilRadius(
+    "card",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
   return (
     <AccordionPrimitive.Item
       ref={ref}
       data-slot="accordion-item"
-      className={cn("border-b border-[var(--pencil-rule)]", className)}
+      className={cn("pencil-border pencil-fill-paper overflow-hidden", className)}
+      style={{ ...radius, ...style }}
       {...props}
     />
   )
@@ -29,7 +55,7 @@ export const AccordionTrigger = React.forwardRef<
         ref={ref}
         data-slot="accordion-trigger"
         className={cn(
-          "pencil-focus flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
+          "pencil-focus pencil-prose-body pencil-fill-paper-hover flex flex-1 items-center justify-between gap-3 px-5 py-4 text-left text-sm transition-colors [&[data-state=open]>svg]:rotate-180",
           className,
         )}
         {...props}
@@ -62,10 +88,13 @@ export const AccordionContent = React.forwardRef<
     <AccordionPrimitive.Content
       ref={ref}
       data-slot="accordion-content"
-      className="overflow-hidden text-sm transition-all data-[state=open]:animate-in data-[state=closed]:animate-out"
+      className="pencil-accordion-content overflow-hidden text-sm"
       {...props}
     >
-      <div className={cn("pb-4 pt-0", className)}>{children}</div>
+      <div className="pencil-separator-line h-2 w-full" data-orientation="horizontal" />
+      <div className={cn("pencil-prose-body px-5 py-4 text-[var(--pencil-muted)]", className)}>
+        {children}
+      </div>
     </AccordionPrimitive.Content>
   )
 })

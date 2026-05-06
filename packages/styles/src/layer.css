@@ -188,6 +188,31 @@
     }
   }
 
+  @keyframes pencil-accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes pencil-accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  .pencil-accordion-content[data-state="open"] {
+    animation: pencil-accordion-down 220ms ease-out;
+  }
+  .pencil-accordion-content[data-state="closed"] {
+    animation: pencil-accordion-up 200ms ease-out;
+  }
+
   .pencil-match-trigger {
     min-width: var(--radix-select-trigger-width);
   }
@@ -255,6 +280,10 @@
     .pencil-radio-dot-draw-on {
       animation: none;
       transform: scale(1);
+    }
+    .pencil-accordion-content[data-state="open"],
+    .pencil-accordion-content[data-state="closed"] {
+      animation: none;
     }
   }
 }
