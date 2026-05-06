@@ -15,7 +15,7 @@ export const InputOTP = React.forwardRef<
       ref={ref}
       data-slot="input-otp"
       containerClassName={cn(
-        "flex items-center gap-2 has-[:disabled]:opacity-50",
+        "flex items-center gap-4 has-[:disabled]:opacity-50",
         containerClassName,
       )}
       className={cn("disabled:cursor-not-allowed", className)}
@@ -30,7 +30,7 @@ export const InputOTPGroup = React.forwardRef<HTMLDivElement, React.HTMLAttribut
       <div
         ref={ref}
         data-slot="input-otp-group"
-        className={cn("flex items-center", className)}
+        className={cn("flex items-center gap-2", className)}
         {...props}
       />
     )
