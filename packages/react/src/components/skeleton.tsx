@@ -21,7 +21,10 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(function
     <div
       ref={ref}
       data-slot="skeleton"
-      className={cn("animate-pulse bg-[var(--pencil-paper-tint)]", className)}
+      className={cn(
+        "animate-pulse bg-[color-mix(in_srgb,var(--pencil-ink)_14%,transparent)]",
+        className,
+      )}
       style={{ ...radius, borderRadius: "var(--pencil-radius)", ...style }}
       {...props}
     />
