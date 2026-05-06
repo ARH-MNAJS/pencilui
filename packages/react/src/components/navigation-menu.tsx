@@ -41,7 +41,7 @@ export const NavigationMenuList = React.forwardRef<
 export const NavigationMenuItem = NavigationMenuPrimitive.Item
 
 export const navigationMenuTriggerStyle = cva(
-  "pencil-focus inline-flex h-10 items-center justify-center px-4 py-2 text-sm font-medium transition-colors data-[state=open]:bg-[color-mix(in_srgb,var(--pencil-ink)_10%,transparent)] hover:bg-[color-mix(in_srgb,var(--pencil-ink)_10%,transparent)]",
+  "pencil-focus pencil-prose-body pencil-fill-paper-hover inline-flex h-10 items-center justify-center px-4 py-2 text-sm transition-colors",
 )
 
 export const NavigationMenuTrigger = React.forwardRef<
@@ -77,7 +77,22 @@ export const NavigationMenuContent = React.forwardRef<
   )
 })
 
-export const NavigationMenuLink = NavigationMenuPrimitive.Link
+export const NavigationMenuLink = React.forwardRef<
+  React.ElementRef<typeof NavigationMenuPrimitive.Link>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Link>
+>(function NavigationMenuLink({ className, ...props }, ref) {
+  return (
+    <NavigationMenuPrimitive.Link
+      ref={ref}
+      data-slot="navigation-menu-link"
+      className={cn(
+        "pencil-nav-underline pencil-focus pencil-prose-body block w-fit px-3 py-2 text-sm",
+        className,
+      )}
+      {...props}
+    />
+  )
+})
 
 export interface NavigationMenuViewportProps extends React.ComponentPropsWithoutRef<
   typeof NavigationMenuPrimitive.Viewport
