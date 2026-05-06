@@ -1,6 +1,7 @@
 "use client"
 
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog"
+import { cva, type VariantProps } from "class-variance-authority"
 import * as React from "react"
 
 import { cn } from "../lib/cn"
@@ -108,16 +109,31 @@ export const AlertDialogDescription = React.forwardRef<
   )
 })
 
-export interface AlertDialogActionProps extends React.ComponentPropsWithoutRef<
-  typeof AlertDialogPrimitive.Action
-> {
+const alertDialogActionVariants = cva(
+  "pencil-border pencil-focus pencil-prose-body inline-flex h-10 items-center justify-center px-4 text-sm transition-colors",
+  {
+    variants: {
+      variant: {
+        default: "pencil-fill-solid text-[var(--pencil-paper)]",
+        destructive:
+          "pencil-fill-danger-soft pencil-fill-danger-soft-hover pencil-text-danger pencil-stroke-danger",
+      },
+    },
+    defaultVariants: { variant: "default" },
+  },
+)
+
+export interface AlertDialogActionProps
+  extends
+    React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>,
+    VariantProps<typeof alertDialogActionVariants> {
   pencilSeed?: string
 }
 
 export const AlertDialogAction = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Action>,
   AlertDialogActionProps
->(function AlertDialogAction({ className, pencilSeed, style, ...props }, ref) {
+>(function AlertDialogAction({ className, variant, pencilSeed, style, ...props }, ref) {
   const radius = usePencilRadius(
     "button",
     pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
@@ -126,10 +142,7 @@ export const AlertDialogAction = React.forwardRef<
     <AlertDialogPrimitive.Action
       ref={ref}
       data-slot="alert-dialog-action"
-      className={cn(
-        "pencil-border pencil-fill-solid pencil-focus pencil-prose-body inline-flex h-10 items-center justify-center px-4 text-sm",
-        className,
-      )}
+      className={cn(alertDialogActionVariants({ variant }), className)}
       style={{ ...radius, ...style }}
       {...props}
     />
