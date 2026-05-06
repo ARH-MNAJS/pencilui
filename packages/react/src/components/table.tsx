@@ -1,21 +1,39 @@
+"use client"
+
 import * as React from "react"
 
 import { cn } from "../lib/cn"
+import { usePencilRadius } from "../lib/use-pencil-radius"
 
-export const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
-  function Table({ className, ...props }, ref) {
-    return (
-      <div data-slot="table-wrapper" className="relative w-full overflow-auto">
+export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
+  pencilSeed?: string
+}
+
+export const Table = React.forwardRef<HTMLTableElement, TableProps>(function Table(
+  { className, pencilSeed, ...props },
+  ref,
+) {
+  const radius = usePencilRadius(
+    "tableBordered",
+    pencilSeed !== undefined ? { seed: pencilSeed } : undefined,
+  )
+  return (
+    <div
+      data-slot="table-wrapper"
+      className="pencil-border pencil-fill-paper relative w-full overflow-hidden"
+      style={radius}
+    >
+      <div className="w-full overflow-auto">
         <table
           ref={ref}
           data-slot="table"
-          className={cn("w-full caption-bottom text-sm", className)}
+          className={cn("w-full caption-bottom border-collapse text-sm", className)}
           {...props}
         />
       </div>
-    )
-  },
-)
+    </div>
+  )
+})
 
 export const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
@@ -25,7 +43,7 @@ export const TableHeader = React.forwardRef<
     <thead
       ref={ref}
       data-slot="table-header"
-      className={cn("[&_tr]:border-b [&_tr]:border-[var(--pencil-rule)]", className)}
+      className={cn("pencil-fill-ink-soft", className)}
       {...props}
     />
   )
@@ -35,14 +53,7 @@ export const TableBody = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(function TableBody({ className, ...props }, ref) {
-  return (
-    <tbody
-      ref={ref}
-      data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
-      {...props}
-    />
-  )
+  return <tbody ref={ref} data-slot="table-body" className={className} {...props} />
 })
 
 export const TableFooter = React.forwardRef<
@@ -53,10 +64,7 @@ export const TableFooter = React.forwardRef<
     <tfoot
       ref={ref}
       data-slot="table-footer"
-      className={cn(
-        "border-t border-[var(--pencil-rule)] bg-[var(--pencil-rule)] font-medium",
-        className,
-      )}
+      className={cn("pencil-fill-ink-soft font-medium", className)}
       {...props}
     />
   )
@@ -71,7 +79,7 @@ export const TableRow = React.forwardRef<
       ref={ref}
       data-slot="table-row"
       className={cn(
-        "border-b border-[var(--pencil-rule)] transition-colors hover:bg-[color-mix(in_srgb,var(--pencil-ink)_5%,transparent)] data-[state=selected]:bg-[color-mix(in_srgb,var(--pencil-ink)_10%,transparent)]",
+        "transition-colors hover:bg-[color-mix(in_srgb,var(--pencil-ink)_5%,transparent)] data-[state=selected]:bg-[color-mix(in_srgb,var(--pencil-ink)_10%,transparent)]",
         className,
       )}
       {...props}
@@ -88,7 +96,7 @@ export const TableHead = React.forwardRef<
       ref={ref}
       data-slot="table-head"
       className={cn(
-        "h-12 px-4 text-left align-middle font-medium text-[var(--pencil-muted)]",
+        "pencil-prose-body pencil-table-cell h-12 px-4 text-left align-middle font-medium text-[var(--pencil-ink)]",
         className,
       )}
       {...props}
@@ -101,7 +109,12 @@ export const TableCell = React.forwardRef<
   React.TdHTMLAttributes<HTMLTableCellElement>
 >(function TableCell({ className, ...props }, ref) {
   return (
-    <td ref={ref} data-slot="table-cell" className={cn("p-4 align-middle", className)} {...props} />
+    <td
+      ref={ref}
+      data-slot="table-cell"
+      className={cn("pencil-table-cell p-4 align-middle", className)}
+      {...props}
+    />
   )
 })
 

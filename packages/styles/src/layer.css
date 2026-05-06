@@ -320,6 +320,18 @@
     mask-repeat: repeat-y;
   }
 
+  .pencil-table-cell {
+    border-right: var(--pencil-stroke-width) solid var(--pencil-stroke-color);
+    border-bottom: var(--pencil-stroke-width) solid var(--pencil-stroke-color);
+  }
+  .pencil-table-cell:last-child {
+    border-right: 0;
+  }
+  table > tbody:last-child > tr:last-child > .pencil-table-cell,
+  table > tfoot:last-child > tr:last-child > .pencil-table-cell {
+    border-bottom: 0;
+  }
+
   .pencil-option {
     cursor: default;
   }
