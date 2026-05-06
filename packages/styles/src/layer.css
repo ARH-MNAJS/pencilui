@@ -178,6 +178,14 @@
     min-width: var(--radix-select-trigger-width);
   }
 
+  .pencil-switch-track {
+    background-color: var(--pencil-paper);
+    transition: background-color 200ms ease-out;
+  }
+  .pencil-switch-track[data-state="checked"] {
+    background-color: color-mix(in srgb, var(--pencil-success) 40%, var(--pencil-paper));
+  }
+
   .pencil-option {
     cursor: default;
   }

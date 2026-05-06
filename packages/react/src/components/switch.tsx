@@ -8,7 +8,7 @@ import { cn } from "../lib/cn"
 import { getPencilRadius, usePencilRadius } from "../lib/use-pencil-radius"
 
 const switchVariants = cva(
-  "pencil-border pencil-focus peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center px-0.5 transition-colors disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:pencil-fill-solid bg-[var(--pencil-paper)]",
+  "pencil-border pencil-focus pencil-switch-track peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center px-0.5 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       strokeWidth: {
@@ -48,7 +48,7 @@ export const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitive.R
       >
         <SwitchPrimitive.Thumb
           data-slot="switch-thumb"
-          className="block size-4 bg-[var(--pencil-ink)] shadow transition-transform duration-200 ease-out data-[state=checked]:translate-x-5 data-[state=checked]:bg-[var(--pencil-paper)] data-[state=unchecked]:translate-x-0 motion-reduce:transition-none motion-reduce:duration-0"
+          className="block size-4 bg-[var(--pencil-ink)] shadow transition-transform duration-200 ease-out data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0 motion-reduce:transition-none motion-reduce:duration-0"
           style={{ borderRadius: thumbRadius }}
         />
       </SwitchPrimitive.Root>
