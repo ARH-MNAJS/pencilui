@@ -12,10 +12,8 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default: "pencil-fill-solid",
-        secondary:
-          "pencil-fill-solid bg-[var(--pencil-ink-soft)] text-[var(--pencil-paper)] [--pencil-stroke-color:var(--pencil-ink-soft)]",
-        destructive:
-          "pencil-fill-solid bg-[var(--pencil-danger)] text-[var(--pencil-paper)] [--pencil-stroke-color:var(--pencil-danger)]",
+        secondary: "pencil-fill-ink-soft text-[var(--pencil-ink)]",
+        destructive: "pencil-fill-danger-soft pencil-text-danger pencil-stroke-danger",
         outline: "pencil-fill-paper",
       },
     },
