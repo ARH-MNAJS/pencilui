@@ -83,11 +83,25 @@
     background-color: color-mix(in srgb, var(--pencil-ink) 6%, var(--pencil-paper));
   }
 
+  .pencil-fill-success-soft {
+    background-color: color-mix(in srgb, var(--pencil-success) 22%, var(--pencil-paper));
+  }
+  .pencil-fill-success-soft-hover:hover {
+    background-color: color-mix(in srgb, var(--pencil-success) 32%, var(--pencil-paper));
+  }
+
   .pencil-stroke-danger {
     --pencil-stroke-color: var(--pencil-danger);
   }
   .pencil-text-danger {
     color: var(--pencil-danger);
+  }
+
+  .pencil-stroke-success {
+    --pencil-stroke-color: var(--pencil-success);
+  }
+  .pencil-text-success {
+    color: var(--pencil-success);
   }
 
   .pencil-link-wavy {

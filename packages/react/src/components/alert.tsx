@@ -7,12 +7,13 @@ import { cn } from "../lib/cn"
 import { usePencilRadius } from "../lib/use-pencil-radius"
 
 const alertVariants = cva(
-  "pencil-border pencil-fill-paper relative w-full p-4 text-sm [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg+*]:pl-7",
+  "pencil-border relative w-full p-4 text-sm [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg+*]:pl-7",
   {
     variants: {
       variant: {
-        default: "",
-        destructive: "[--pencil-stroke-color:var(--pencil-danger)] text-[var(--pencil-danger)]",
+        default: "pencil-fill-paper text-[var(--pencil-ink)]",
+        destructive: "pencil-fill-danger-soft pencil-text-danger pencil-stroke-danger",
+        success: "pencil-fill-success-soft pencil-text-success pencil-stroke-success",
       },
     },
     defaultVariants: {
