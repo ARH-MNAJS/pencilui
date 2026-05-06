@@ -154,6 +154,11 @@ export {
   MenubarTrigger,
 } from "./components/menubar"
 export {
+  Multiselect,
+  type MultiselectOption,
+  type MultiselectProps,
+} from "./components/multiselect"
+export {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
